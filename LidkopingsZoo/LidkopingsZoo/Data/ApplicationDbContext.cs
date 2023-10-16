@@ -18,13 +18,8 @@ namespace LidkopingsZoo.Data
            
         }
         public DbSet<Animal> Animals { get; set; }
-
-
-        public DbSet<Visitor> Visitors { get; set; }
         public DbSet<Visit> Visits { get; set; }
         public DbSet<Visit> Guide { get; set; }
-
-        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
