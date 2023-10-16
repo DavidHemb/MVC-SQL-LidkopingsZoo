@@ -19,7 +19,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddDefaultUI()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-builder.Services.AddScoped<UserServices>();
+//builder.Services.AddScoped<UserServices>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
