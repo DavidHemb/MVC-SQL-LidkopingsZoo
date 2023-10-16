@@ -2,6 +2,7 @@
 {
     public abstract class Land : Habitat
     {
+        //KM/H
         public abstract int Speed { get; set; }
         public Land(int Speed, string name, string description) : base(name, description)
         {
