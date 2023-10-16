@@ -3,7 +3,7 @@ namespace LidkopingsZoo.Models.WaterAnimals
 {
     public class Orca : Water
     {
-        //METERS
+        public int Id { get; set; }
         public override int DivingDepth { get; set; }
         public Orca(int DivingDepth, string name, string description) : base(DivingDepth, name, description)
         {

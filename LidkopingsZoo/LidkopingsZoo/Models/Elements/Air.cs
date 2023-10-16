@@ -4,7 +4,7 @@
     {
         //METERS
         public abstract int MaxAltitude { get; set; }
-        public Air(string name, string description) : base(name, description)
+        public Air(int maxAltitude, string name, string description) : base(name, description)
         {
             MaxAltitude = MaxAltitude;
             Name = name;

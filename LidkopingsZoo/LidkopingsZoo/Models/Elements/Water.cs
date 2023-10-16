@@ -2,6 +2,7 @@
 {
     public abstract class Water : Habitat
     {
+        //METERS
         public abstract int DivingDepth { get; set; }
         public Water(int DivingDepth, string name, string description) : base(name, description)
         {

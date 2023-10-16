@@ -3,6 +3,7 @@ namespace LidkopingsZoo.Models.Animals.WaterAnimals
 {
     public class Penguin : Water
     {
+        public int Id { get; set; }
         public override int DivingDepth { get; set; }
         public Penguin(int DivingDepth, string name, string description) : base(DivingDepth, name, description)
         {
@@ -24,5 +25,6 @@ namespace LidkopingsZoo.Models.Animals.WaterAnimals
         {
             Console.WriteLine("I swim");
         }
+        public int Count { get; set; }
     }
 }

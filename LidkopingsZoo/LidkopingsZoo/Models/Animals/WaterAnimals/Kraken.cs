@@ -4,6 +4,7 @@ namespace LidkopingsZoo.Models.Animals.WaterAnimals
 {
     public class Kraken : Water
     {
+        public int Id { get; set; }
         public override int DivingDepth { get; set; }
         public Kraken(int DivingDepth, string name, string description) : base(DivingDepth, name, description)
         {
