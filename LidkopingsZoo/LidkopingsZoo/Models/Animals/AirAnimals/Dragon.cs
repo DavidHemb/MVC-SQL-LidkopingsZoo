@@ -4,7 +4,6 @@ namespace LidkopingsZoo.Models.Animals.AirAnimals
 {
     public class Dragon : Air
     {
-        public int Id { get; set; }
         public override int MaxAltitude { get; set; }
         public Dragon(int MaxAltitude, string name, string description) : base(MaxAltitude, name, description)
         {

@@ -1,11 +1,13 @@
-﻿namespace LidkopingsZoo.Models.Visitation
+﻿using Microsoft.AspNetCore.Identity;
+namespace LidkopingsZoo.Models.Visitation
+    
 {
     public class Visit
     {
         public int Id { get; set; }
-        public List<Visitor> Visitors { get; set; }
-        public List<Animal> Animals { get; set; }
-        DateTime VisitTime { get; set; }
-        public List<Guide> Guides { get; set; }
+        public DateTime VisitTime { get; set; }
+        public string Visitors { get; set; }
+        public Guide Guides { get; set; }
+        public IdentityUser User { get; set; }
     }
 }

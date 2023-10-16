@@ -4,7 +4,6 @@ namespace LidkopingsZoo.Models.Animals.LandAnimals
 {
     public class SantaClaus : Land
     {
-        public int Id { get; set; }
         public override int Speed { get; set; }
         public SantaClaus(int Speed, string name, string description) : base(Speed, name, description)
         {

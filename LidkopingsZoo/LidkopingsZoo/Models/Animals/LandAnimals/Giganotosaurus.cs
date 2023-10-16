@@ -4,7 +4,6 @@ namespace LidkopingsZoo.Models.Animals.LandAnimals
 {
     public class Giganotosaurus : Land
     {
-        public int Id { get; set; }
         public override int Speed { get; set; }
         public Giganotosaurus(int Speed, string name, string description) : base(Speed, name, description)
         {

@@ -1,9 +1,9 @@
 ﻿using LidkopingsZoo.Models.Elements;
-namespace LidkopingsZoo.Models.WaterAnimals
+
+namespace LidkopingsZoo.Models.Animals.WaterAnimals
 {
     public class Orca : Water
     {
-        public int Id { get; set; }
         public override int DivingDepth { get; set; }
         public Orca(int DivingDepth, string name, string description) : base(DivingDepth, name, description)
         {
