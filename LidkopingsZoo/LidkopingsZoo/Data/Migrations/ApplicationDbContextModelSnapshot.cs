@@ -30,6 +30,9 @@ namespace LidkopingsZoo.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AirType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Count")
                         .HasColumnType("int");
 
@@ -37,13 +40,30 @@ namespace LidkopingsZoo.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("HabitatType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasHabitat")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LandType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WaterType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Animals");
+                    b.ToTable("Animal");
+
+                    b.HasDiscriminator<string>("WaterType");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Guide", b =>
@@ -65,7 +85,7 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.HasIndex("AnimalsId");
 
-                    b.ToTable("Guide");
+                    b.ToTable("Guides");
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Visit", b =>
@@ -80,6 +100,7 @@ namespace LidkopingsZoo.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("UserId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("VisitTime")
@@ -95,7 +116,7 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Visit");
+                    b.ToTable("Visits");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -162,10 +183,6 @@ namespace LidkopingsZoo.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -217,10 +234,6 @@ namespace LidkopingsZoo.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -308,18 +321,105 @@ namespace LidkopingsZoo.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("LidkopingsZoo.Models.User", b =>
+            modelBuilder.Entity("LidkopingsZoo.Models.Habitat", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+                    b.HasBaseType("LidkopingsZoo.Models.Animal");
 
-                    b.HasDiscriminator().HasValue("User");
+                    b.Property<int>("HabitatId")
+                        .HasColumnType("int");
                 });
 
-            modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Visitor", b =>
+            modelBuilder.Entity("LidkopingsZoo.Models.Elements.Air", b =>
                 {
-                    b.HasBaseType("LidkopingsZoo.Models.User");
+                    b.HasBaseType("LidkopingsZoo.Models.Habitat");
 
-                    b.HasDiscriminator().HasValue("Visitor");
+                    b.Property<int>("MaxAltitude")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("Air");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Elements.Land", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Habitat");
+
+                    b.Property<int>("Speed")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("Land");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Elements.Water", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Habitat");
+
+                    b.Property<int>("DivingDepth")
+                        .HasColumnType("int");
+
+                    b.HasDiscriminator().HasValue("Water");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Animals.AirAnimals.Dragon", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Elements.Air");
+
+                    b.HasDiscriminator().HasValue("Dragon");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Animals.AirAnimals.Goose", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Elements.Air");
+
+                    b.HasDiscriminator().HasValue("Goose");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Animals.AirAnimals.Griffin", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Elements.Air");
+
+                    b.HasDiscriminator().HasValue("Griffin");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Animals.LandAnimals.Cow", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Elements.Land");
+
+                    b.HasDiscriminator().HasValue("Cow");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Animals.LandAnimals.Giganotosaurus", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Elements.Land");
+
+                    b.HasDiscriminator().HasValue("Giganotosaurus");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Animals.LandAnimals.SantaClaus", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Elements.Land");
+
+                    b.HasDiscriminator().HasValue("SantaClaus");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Animals.WaterAnimals.Kraken", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Elements.Water");
+
+                    b.HasDiscriminator().HasValue("Kraken");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Animals.WaterAnimals.Orca", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Elements.Water");
+
+                    b.HasDiscriminator().HasValue("Orca");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Animals.WaterAnimals.Penguin", b =>
+                {
+                    b.HasBaseType("LidkopingsZoo.Models.Elements.Water");
+
+                    b.HasDiscriminator().HasValue("Penguin");
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Guide", b =>
@@ -343,7 +443,9 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Guides");
 

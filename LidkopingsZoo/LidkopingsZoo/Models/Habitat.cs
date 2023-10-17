@@ -4,6 +4,7 @@ namespace LidkopingsZoo.Models
 {
     public abstract class Habitat : Animal
     {
+        public int HabitatId { get; set; }
         public Habitat(string name, string description) : base(name, description)
         {
             this.Name = name;

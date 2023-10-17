@@ -7,6 +7,7 @@ using LidkopingsZoo.Models.Visitation;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using System.Diagnostics.Contracts;
 
 namespace LidkopingsZoo.Data
 {
@@ -17,17 +18,39 @@ namespace LidkopingsZoo.Data
         {
            
         }
-        public DbSet<Animal> Animals { get; set; }
         public DbSet<Visit> Visits { get; set; }
-        public DbSet<Visit> Guide { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder builder)
+        public DbSet<Guide> Guides { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
+            modelBuilder.Entity<Animal>()
+               .HasDiscriminator<bool>("HasHabitat")
+               .HasValue<Habitat>(true);
 
-            #region Fluent API
+            modelBuilder.Entity<Habitat>()
+                .HasDiscriminator<string>("HabitatType")
+                .HasValue<Air>("Air")
+                .HasValue<Land>("Land")
+                .HasValue<Water>("Water");
 
-            #endregion
+            modelBuilder.Entity<Air>()
+                .HasDiscriminator<string>("AirType")?
+                .HasValue<Dragon>("Dragon")
+                .HasValue<Goose>("Goose")
+                .HasValue<Griffin>("Griffin");
+
+            modelBuilder.Entity<Land>()
+                .HasDiscriminator<string>("LandType")
+                .HasValue<Cow>("Cow")?
+                .HasValue<Giganotosaurus>("Giganotosaurus")
+                .HasValue<SantaClaus>("SantaClaus");
+
+            modelBuilder.Entity<Water>()
+                .HasDiscriminator<string>("WaterType")
+                .HasValue<Kraken>("Kraken")
+                .HasValue<Orca>("Orca")
+                .HasValue<Penguin>("Penguin");
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -4,7 +4,7 @@ html {
 }
 body {
     margin-bottom: 60px;
-    background-color: dimgray;
+    background-color: white;
 }
 /*-------------------------------------------*/
 /*INDEX*/
@@ -31,7 +31,7 @@ body {
         height: 200em;
     }
     .title {
-        color: floralwhite;
+        color: dimgray;
         font-size: 80px;
         text-align: center;
         margin: 5%;
@@ -62,7 +62,7 @@ body {
         height: 175em;
     }
     .title {
-        color: floralwhite;
+        color: dimgray;
         font-size: 50px;
         text-align: center;
         margin: 5%;
