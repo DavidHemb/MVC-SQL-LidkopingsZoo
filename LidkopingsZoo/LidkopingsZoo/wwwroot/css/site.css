@@ -1,22 +1,52 @@
 html {
-  font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: dimgray;
+}
+footer{
+    background-color: white;
+}
+.title {
+    color: floralwhite;
+    font-size: 80px;
+    text-align: center;
+    margin: 5%;
+}
+.gridV3 {
+    margin: 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: lightgray;
+    border: solid darkgray 3px;
+    border-radius: 18px;
+}
+.gridH3 {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    border: solid 4px;
+    border-radius: 18px;
+    margin: 5%;
+}
+.gridwindows {
+    width: 90%;
+    word-break: break-word;
+    background-color: lightgray;
+    height: 45%;
+}
+.gridwindowsimg {
+    width: 100%;
+    height: 100%;
+}
+.gridwindowstext {
+    text-align: center;
+    padding: 10%;
+}
+.imageimg {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
 }
