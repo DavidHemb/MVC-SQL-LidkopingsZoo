@@ -8,6 +8,12 @@
     <li class="nav-item">
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
     </li>
+        @if (User.IsInRole("Guide") || User.IsInRole("Admin"))
+        {
+            <li>
+                <a class="dropdown-item text-danger" asp-area="" asp-controller="Admin" asp-action="Index">Guide Panel</a>
+            </li>
+        }
         @if (User.IsInRole("Admin"))
         {
             <li>

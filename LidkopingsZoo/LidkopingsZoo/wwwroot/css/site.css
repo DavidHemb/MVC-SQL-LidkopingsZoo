@@ -1,40 +1,87 @@
 html {
     position: relative;
-    min-height: 100%;
+    height: 200em;
 }
 body {
     margin-bottom: 60px;
     background-color: dimgray;
 }
-footer{
-    background-color: white;
+/*-------------------------------------------*/
+/*INDEX*/
+/*-------------------------------------------*/
+@media only screen and (min-width: 770px) {
+    .gridV3 {
+        margin: 5%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background-color: lightgray;
+        border: solid darkgray 3px;
+        border-radius: 18px;
+    }
+
+    .gridH3 {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        border: solid 4px;
+        border-radius: 18px;
+        margin: 5%;
+    }
+    html {
+        position: relative;
+        height: 200em;
+    }
+    .title {
+        color: floralwhite;
+        font-size: 80px;
+        text-align: center;
+        margin: 5%;
+    }
+    a {
+        font-size: 22px;
+    }
 }
-.title {
-    color: floralwhite;
-    font-size: 80px;
-    text-align: center;
-    margin: 5%;
-}
-.gridV3 {
-    margin: 5%;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    background-color: lightgray;
-    border: solid darkgray 3px;
-    border-radius: 18px;
-}
-.gridH3 {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    border: solid 4px;
-    border-radius: 18px;
-    margin: 5%;
+@media only screen and (max-width: 769px) {
+    .gridV3 {
+        margin: 5%;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        background-color: lightgray;
+        border: solid darkgray 3px;
+        border-radius: 18px;
+    }
+
+    .gridH3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border: solid 4px;
+        border-radius: 18px;
+        margin: 5%;
+    }
+    html {
+        position: relative;
+        height: 175em;
+    }
+    .title {
+        color: floralwhite;
+        font-size: 50px;
+        text-align: center;
+        margin: 5%;
+    }
+    h5{
+        font-size: 12px;
+    }
+    p{
+        font-size:10px;
+    }
+    a {
+        font-size: 12px;
+    }
 }
 .gridwindows {
     width: 90%;
     word-break: break-word;
     background-color: lightgray;
-    height: 45%;
+    height: 30%;
 }
 .gridwindowsimg {
     width: 100%;
@@ -49,4 +96,66 @@ footer{
     height: 100%;
     border-radius: 12px;
     object-fit: cover;
+}
+/*-------------------------------------------*/
+/*FOOTER*/
+/*-------------------------------------------*/
+@media only screen and (min-width: 770px) {
+    .footercontent {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        text-align: center;
+    }
+
+    footer {
+        background-color: lightgray;
+        padding: 50px;
+        cursor: default;
+        position: absolute;
+        bottom: -100px;
+    }
+
+    .Headlines1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        text-align: center;
+    }
+
+    .Headlines2 {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 769px) {
+    .footercontent {
+        display: grid;
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    footer {
+        margin-top: 50%;
+        background-color: lightgray;
+        padding: 50px;
+        cursor: default;
+        position: absolute;
+        bottom: -500px;
+    }
+
+    .Headlines1 {
+        display: none;
+    }
+
+    .Headlines2 {
+        text-align: center;
+        padding: 5%;
+    }
+}
+
+h3 {
+    padding-bottom: 5%;
+}
+
+.footerinfobox {
+    padding-bottom: 5%;
 }
