@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LidkopingsZoo.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231018091310_InitialCreate")]
+    [Migration("20231018091836_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -43,6 +43,9 @@ namespace LidkopingsZoo.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("GuideId")
+                        .HasColumnType("int");
+
                     b.Property<int>("HabitatId")
                         .HasColumnType("int");
 
@@ -62,6 +65,8 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GuideId");
+
                     b.ToTable("Animal");
 
                     b.HasDiscriminator<string>("WaterAnimal");
@@ -77,16 +82,11 @@ namespace LidkopingsZoo.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AnimalsId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AnimalsId");
 
                     b.ToTable("Guides");
                 });
@@ -102,10 +102,6 @@ namespace LidkopingsZoo.Data.Migrations
                     b.Property<int>("GuidesId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("VisitTime")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -116,8 +112,6 @@ namespace LidkopingsZoo.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("GuidesId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Visits");
                 });
@@ -226,6 +220,9 @@ namespace LidkopingsZoo.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<int?>("VisitId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -235,6 +232,8 @@ namespace LidkopingsZoo.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("VisitId");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -416,15 +415,11 @@ namespace LidkopingsZoo.Data.Migrations
                     b.HasDiscriminator().HasValue("Penguin");
                 });
 
-            modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Guide", b =>
+            modelBuilder.Entity("LidkopingsZoo.Models.Animal", b =>
                 {
-                    b.HasOne("LidkopingsZoo.Models.Animal", "Animals")
-                        .WithMany()
-                        .HasForeignKey("AnimalsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Animals");
+                    b.HasOne("LidkopingsZoo.Models.Visitation.Guide", null)
+                        .WithMany("Animals")
+                        .HasForeignKey("GuideId");
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Visit", b =>
@@ -435,15 +430,7 @@ namespace LidkopingsZoo.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Guides");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -453,6 +440,13 @@ namespace LidkopingsZoo.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.HasOne("LidkopingsZoo.Models.Visitation.Visit", null)
+                        .WithMany("User")
+                        .HasForeignKey("VisitId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -495,6 +489,16 @@ namespace LidkopingsZoo.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Guide", b =>
+                {
+                    b.Navigation("Animals");
+                });
+
+            modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Visit", b =>
+                {
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

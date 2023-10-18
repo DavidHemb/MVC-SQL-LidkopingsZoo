@@ -10,6 +10,25 @@ namespace LidkopingsZoo.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<int>(
+                name: "VisitId",
+                table: "AspNetUsers",
+                type: "int",
+                nullable: true);
+
+            migrationBuilder.CreateTable(
+                name: "Guides",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Guides", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Animal",
                 columns: table => new
@@ -20,6 +39,7 @@ namespace LidkopingsZoo.Data.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Count = table.Column<int>(type: "int", nullable: false),
                     HasHabitat = table.Column<bool>(type: "bit", nullable: false),
+                    GuideId = table.Column<int>(type: "int", nullable: true),
                     HabitatId = table.Column<int>(type: "int", nullable: false),
                     AirAnimal = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LandAnimal = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -31,26 +51,11 @@ namespace LidkopingsZoo.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Animal", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Guides",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AnimalsId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Guides", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Guides_Animal_AnimalsId",
-                        column: x => x.AnimalsId,
-                        principalTable: "Animal",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Animal_Guides_GuideId",
+                        column: x => x.GuideId,
+                        principalTable: "Guides",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -61,18 +66,11 @@ namespace LidkopingsZoo.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VisitTime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     GuidesId = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Visitors = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Visits", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Visits_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Visits_Guides_GuidesId",
                         column: x => x.GuidesId,
@@ -82,32 +80,51 @@ namespace LidkopingsZoo.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Guides_AnimalsId",
-                table: "Guides",
-                column: "AnimalsId");
+                name: "IX_AspNetUsers_VisitId",
+                table: "AspNetUsers",
+                column: "VisitId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Animal_GuideId",
+                table: "Animal",
+                column: "GuideId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Visits_GuidesId",
                 table: "Visits",
                 column: "GuidesId");
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Visits_UserId",
-                table: "Visits",
-                column: "UserId");
+            migrationBuilder.AddForeignKey(
+                name: "FK_AspNetUsers_Visits_VisitId",
+                table: "AspNetUsers",
+                column: "VisitId",
+                principalTable: "Visits",
+                principalColumn: "Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_AspNetUsers_Visits_VisitId",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Animal");
+
             migrationBuilder.DropTable(
                 name: "Visits");
 
             migrationBuilder.DropTable(
                 name: "Guides");
 
-            migrationBuilder.DropTable(
-                name: "Animal");
+            migrationBuilder.DropIndex(
+                name: "IX_AspNetUsers_VisitId",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "VisitId",
+                table: "AspNetUsers");
         }
     }
 }
