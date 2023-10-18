@@ -7,7 +7,7 @@ namespace LidkopingsZoo.Models.Visitation
         public int Id { get; set; }
         public string VisitTime { get; set; }
         public Guide Guides { get; set; }
-        public ICollection<IdentityUser> User { get; set; }
+        public IdentityUser User { get; set; }
         public int Visitors { get; set; }
     }
 }
