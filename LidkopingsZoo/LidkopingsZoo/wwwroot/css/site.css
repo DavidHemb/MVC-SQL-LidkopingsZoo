@@ -3,7 +3,6 @@ html {
     height: 250em;
 }
 body {
-    margin-bottom: 60px;
     background-color: white;
 }
 /*-------------------------------------------*/
@@ -13,7 +12,7 @@ body {
     .gridV3 {
         margin: 5%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         background-color: lightgray;
         border: solid darkgray 3px;
         border-radius: 18px;
@@ -21,14 +20,14 @@ body {
 
     .gridH3 {
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         border: solid 4px;
         border-radius: 18px;
-        margin: 5%;
+        margin: 3%;
     }
     html {
         position: relative;
-        height: 250em;
+        height: 200em;
     }
     .title {
         color: dimgray;
@@ -78,10 +77,10 @@ body {
     }
 }
 .gridwindows {
-    width: 90%;
+    width: 100%;
     word-break: break-word;
     background-color: lightgray;
-    height: 30%;
+    height: 20%;
 }
 .gridwindowsimg {
     width: 100%;
@@ -89,7 +88,7 @@ body {
 }
 .gridwindowstext {
     text-align: center;
-    padding: 10%;
+    padding: 5%;
 }
 .imageimg {
     width: 100%;

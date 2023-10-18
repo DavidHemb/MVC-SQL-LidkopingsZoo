@@ -10,7 +10,7 @@ body {
 /*Tours*/
 /*-------------------------------------------*/
 @media only screen and (min-width: 994px) {
-    .gridV3 {
+    .gridV4 {
         margin: 5%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -19,7 +19,7 @@ body {
         border-radius: 18px;
     }
 
-    .gridH3 {
+    .gridH4 {
         display: grid;
         grid-template-rows: 1fr 1fr;
         border: solid 4px;
@@ -42,7 +42,7 @@ body {
     }
 }
 @media only screen and (max-width: 995px) {
-    .gridV3 {
+    .gridV4 {
         margin: 5%;
         display: grid;
         grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -51,7 +51,7 @@ body {
         border-radius: 18px;
     }
 
-    .gridH3 {
+    .gridH4 {
         display: grid;
         grid-template-columns: 1fr 1fr;
         border: solid 4px;
