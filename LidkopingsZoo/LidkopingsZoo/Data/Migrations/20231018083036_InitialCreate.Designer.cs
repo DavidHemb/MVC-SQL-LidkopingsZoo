@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LidkopingsZoo.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231017175613_InitialCreate")]
+    [Migration("20231018083036_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,7 +33,7 @@ namespace LidkopingsZoo.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AirType")
+                    b.Property<string>("AirAnimal")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Count")
@@ -43,20 +43,20 @@ namespace LidkopingsZoo.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HabitatType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("HabitatId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("HasHabitat")
                         .HasColumnType("bit");
 
-                    b.Property<string>("LandType")
+                    b.Property<string>("LandAnimal")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("WaterType")
+                    b.Property<string>("WaterAnimal")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -64,7 +64,7 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.ToTable("Animal");
 
-                    b.HasDiscriminator<string>("WaterType");
+                    b.HasDiscriminator<string>("WaterAnimal");
 
                     b.UseTphMappingStrategy();
                 });
@@ -327,9 +327,6 @@ namespace LidkopingsZoo.Data.Migrations
             modelBuilder.Entity("LidkopingsZoo.Models.Habitat", b =>
                 {
                     b.HasBaseType("LidkopingsZoo.Models.Animal");
-
-                    b.Property<int>("HabitatId")
-                        .HasColumnType("int");
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Elements.Air", b =>
@@ -338,8 +335,6 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.Property<int>("MaxAltitude")
                         .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Air");
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Elements.Land", b =>
@@ -348,8 +343,6 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.Property<int>("Speed")
                         .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Land");
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Elements.Water", b =>
@@ -358,8 +351,6 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.Property<int>("DivingDepth")
                         .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Water");
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Animals.AirAnimals.Dragon", b =>

@@ -27,25 +27,25 @@ namespace LidkopingsZoo.Data
                .HasValue<Habitat>(true);
 
             modelBuilder.Entity<Habitat>()
-                .HasDiscriminator<string>("HabitatType")
-                .HasValue<Air>("Air")
-                .HasValue<Land>("Land")
-                .HasValue<Water>("Water");
+                .HasDiscriminator<int>("HabitatId")
+                .HasValue<Air>(1)
+                .HasValue<Land>(2)
+                .HasValue<Water>(3);
 
             modelBuilder.Entity<Air>()
-                .HasDiscriminator<string>("AirType")?
+                .HasDiscriminator<string>("AirAnimal")?
                 .HasValue<Dragon>("Dragon")
                 .HasValue<Goose>("Goose")
                 .HasValue<Griffin>("Griffin");
 
             modelBuilder.Entity<Land>()
-                .HasDiscriminator<string>("LandType")
-                .HasValue<Cow>("Cow")?
+                .HasDiscriminator<string>("LandAnimal")?
+                .HasValue<Cow>("Cow")
                 .HasValue<Giganotosaurus>("Giganotosaurus")
                 .HasValue<SantaClaus>("SantaClaus");
 
             modelBuilder.Entity<Water>()
-                .HasDiscriminator<string>("WaterType")
+                .HasDiscriminator<string>("WaterAnimal")?
                 .HasValue<Kraken>("Kraken")
                 .HasValue<Orca>("Orca")
                 .HasValue<Penguin>("Penguin");
