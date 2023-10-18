@@ -50,24 +50,6 @@ namespace LidkopingsZoo.Data
                 .HasValue<Orca>("Orca")
                 .HasValue<Penguin>("Penguin");
 
-            //modelBuilder.Entity<Habitat>(x => x.HasBaseType<Animal>());
-
-            //modelBuilder.Entity<Air>(x => x.HasBaseType<Habitat>());
-            //modelBuilder.Entity<Land>(x => x.HasBaseType<Habitat>());
-            //modelBuilder.Entity<Water>(x => x.HasBaseType<Habitat>());
-
-            //modelBuilder.Entity<Dragon>(x => x.HasBaseType<Air>());
-            //modelBuilder.Entity<Goose>(x => x.HasBaseType<Air>());
-            //modelBuilder.Entity<Griffin>(x => x.HasBaseType<Air>());
-
-            //modelBuilder.Entity<Cow>(x => x.HasBaseType<Land>());
-            //modelBuilder.Entity<Giganotosaurus>(x => x.HasBaseType<Land>());
-            //modelBuilder.Entity<SantaClaus>(x => x.HasBaseType<Land>());
-
-            //modelBuilder.Entity<Kraken>(x => x.HasBaseType<Water>());
-            //modelBuilder.Entity<Orca>(x => x.HasBaseType<Water>());
-            //modelBuilder.Entity<Penguin>(x => x.HasBaseType<Water>());
-
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -17,10 +17,6 @@ namespace LidkopingsZoo.Controllers
         {
             return View();
         }
-        public IActionResult Tours()
-        {
-            return View();
-        }
         public IActionResult AboutUs()
         {
             return View();
