@@ -1,6 +1,6 @@
 html {
     position: relative;
-    height: 200em;
+    height: 250em;
 }
 body {
     margin-bottom: 60px;
@@ -28,7 +28,7 @@ body {
     }
     html {
         position: relative;
-        height: 200em;
+        height: 250em;
     }
     .title {
         color: dimgray;
@@ -59,7 +59,7 @@ body {
     }
     html {
         position: relative;
-        height: 175em;
+        height: 235em;
     }
     .title {
         color: dimgray;

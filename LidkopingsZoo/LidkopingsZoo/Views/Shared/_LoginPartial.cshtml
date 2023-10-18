@@ -13,7 +13,7 @@
                 }
                 else
                 {
-                    <img src="~/assets/member.png.jpg" alt="" width="32" height="32" class="rounded-circle" />
+                    <img src="~/assets/avatar2.png" alt="" width="32" height="32" class="rounded-circle" />
                 }
                 @User.Identity?.Name
             </a>
@@ -27,7 +27,7 @@
                 @if (User.IsInRole("Guide") || User.IsInRole("Admin"))
                 {
                     <li>
-                        <a class="dropdown-item text-danger" asp-area="" asp-controller="Admin" asp-action="GuidePanel">Guide Panel</a>
+                        <a class="dropdown-item text-danger" asp-area="" asp-controller="Guide" asp-action="GuidePanel">Guide Panel</a>
                     </li>
                 }
                 @if (User.IsInRole("Admin"))
@@ -41,7 +41,7 @@
                 </li>
                 <li>
                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                        <button type="submit" class="dropdown-item">Logout</button>
+                        <button type="submit" style="font-size:20px;" class="dropdown-item">Logout</button>
                     </form>
                 </li>
             </ul>

@@ -1,0 +1,71 @@
+html {
+    position: relative;
+    height: 200em;
+}
+body {
+    margin-bottom: 60px;
+    background-color: white;
+}
+/*-------------------------------------------*/
+/*Tours*/
+/*-------------------------------------------*/
+@media only screen and (min-width: 994px) {
+    .gridV3 {
+        margin: 5%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background-color: lightgray;
+        border: solid darkgray 3px;
+        border-radius: 18px;
+    }
+    html {
+        position: relative;
+        height: 150em;
+    }
+    .title {
+        color: dimgray;
+        font-size: 80px;
+        text-align: center;
+        margin: 5%;
+    }
+}
+@media only screen and (max-width: 995px) {
+    .gridV3 {
+        margin: 5%;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        background-color: lightgray;
+        border: solid darkgray 3px;
+        border-radius: 18px;
+    }
+    html {
+        position: relative;
+        height: 170em;
+    }
+    .title {
+        color: dimgray;
+        font-size: 50px;
+        text-align: center;
+        margin: 5%;
+    }
+    h5{
+        font-size: 12px;
+    }
+    p{
+        font-size:10px;
+    }
+}
+.gridwindowstext {
+    text-align: center;
+    padding: 10%;
+}
+.gridwindowsimg {
+    width: 100%;
+    height: 100%;
+}
+.imageimg {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+}
