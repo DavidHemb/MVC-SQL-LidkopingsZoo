@@ -103,12 +103,12 @@ namespace LidkopingsZoo.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("VisitTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Visitors")
+                    b.Property<string>("VisitTime")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Visitors")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
