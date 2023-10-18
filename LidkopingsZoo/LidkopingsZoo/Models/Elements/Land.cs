@@ -10,5 +10,9 @@
             this.Name = name;
             this.Description = description;
         }
+        public void IRun()
+        {
+            Console.WriteLine("I run");
+        }
     }
 }

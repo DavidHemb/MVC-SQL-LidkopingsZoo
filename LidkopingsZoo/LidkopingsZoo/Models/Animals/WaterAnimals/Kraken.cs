@@ -11,19 +11,5 @@ namespace LidkopingsZoo.Models.Animals.WaterAnimals
             this.Name = "Kraken";
             this.Description = "The kraken (/ˈkrɑːkən/)[7] is a legendary sea monster of enormous size said to appear in the sea between Norway and Iceland.\r\n\r\nKraken, the subject of sailors' superstitions and mythos, was first described in the modern era in a travelogue by Francesco Negri in 1700. This description was followed in 1734 by an account from Dano-Norwegian missionary and explorer Hans Egede, who described the kraken in detail and equated it with the hafgufa of medieval lore.";
         }
-        public override void IFly()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void IRun()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void ISwim()
-        {
-            Console.WriteLine("I swim");
-        }
     }
 }

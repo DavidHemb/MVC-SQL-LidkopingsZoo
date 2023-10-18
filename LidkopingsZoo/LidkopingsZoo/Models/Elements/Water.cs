@@ -10,5 +10,9 @@
             Name = name;
             Description = description;
         }
+        public void ISwim()
+        {
+            Console.WriteLine("I swim");
+        }
     }
 }

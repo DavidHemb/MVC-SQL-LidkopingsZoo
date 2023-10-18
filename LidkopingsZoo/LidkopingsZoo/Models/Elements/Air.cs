@@ -10,5 +10,9 @@
             Name = name;
             Description = description;
         }
+        public void IFly()
+        {
+            Console.WriteLine("I fly");
+        }
     }
 }

@@ -10,8 +10,5 @@ namespace LidkopingsZoo.Models
             this.Name = name;
             this.Description = description;
         }
-        public abstract void IRun();
-        public abstract void IFly();
-        public abstract void ISwim();
     }
 }

@@ -11,19 +11,5 @@ namespace LidkopingsZoo.Models.Animals.WaterAnimals
             this.Name = "KillerWhale";
             this.Description = "\"Killer Whale\" typically refers to the orca, a marine mammal known for its distinctive black and white coloration. They are among the ocean's top predators, with powerful hunting skills and complex social structures.";
         }
-        public override void IFly()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void IRun()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void ISwim()
-        {
-            Console.WriteLine("I swim");
-        }
     }
 }
