@@ -5,26 +5,47 @@
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-    </li>
-        @if (User.IsInRole("Guide") || User.IsInRole("Admin"))
-        {
-            <li>
-                <a class="dropdown-item text-danger" asp-area="" asp-controller="Admin" asp-action="Index">Guide Panel</a>
-            </li>
-        }
-        @if (User.IsInRole("Admin"))
-        {
-            <li>
-                <a class="dropdown-item text-danger" asp-area="" asp-controller="Admin" asp-action="Index">Admin Panel</a>
-            </li>
-        }
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
+        <div class="flex-shrink-0 dropdown me-4">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                @if (User.IsInRole("Admin"))
+                {
+                    <img src="~/assets/admin.png" alt="" width="32" height="32" class="rounded-circle" />
+                }
+                else
+                {
+                    <img src="~/assets/member.png.jpg" alt="" width="32" height="32" class="rounded-circle" />
+                }
+                @User.Identity?.Name
+            </a>
+            <ul class="dropdown-menu text-small">
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Profile" title="Profile">Profile</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Settings</a>
+                </li>
+                @if (User.IsInRole("Guide") || User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a class="dropdown-item text-danger" asp-area="" asp-controller="Admin" asp-action="GuidePanel">Guide Panel</a>
+                    </li>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a class="dropdown-item text-danger" asp-area="" asp-controller="Admin" asp-action="AdminPanel">Admin Panel</a>
+                    </li>
+                }
+                <li>
+                    <hr class="dropdown-divider" />
+                </li>
+                <li>
+                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        <button type="submit" class="dropdown-item">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
 }
 else
 {
