@@ -18,15 +18,12 @@ namespace LidkopingsZoo.Data
         {
            
         }
+        public DbSet<Animal> Animal { get; set; }
         public DbSet<Visit> Visits { get; set; }
         public DbSet<Guide> Guides { get; set; }
         public DbSet<GuideAnimal> guideAnimals { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Animal>()
-               .HasDiscriminator<bool>("HasHabitat")
-               .HasValue<Habitat>(true);
-
             modelBuilder.Entity<Habitat>()
                 .HasDiscriminator<int>("HabitatId")
                 .HasValue<Air>(1)

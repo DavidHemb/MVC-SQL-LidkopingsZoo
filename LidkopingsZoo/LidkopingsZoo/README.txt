@@ -2,6 +2,8 @@ ADMIN
 Username: Admin@mail.com
 Password: Admin1!
 
+
+
 Db init query
 INSERT INTO Guides (name)
 VALUES ('Guido The Guide')

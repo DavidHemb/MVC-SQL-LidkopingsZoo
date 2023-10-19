@@ -1,16 +1,19 @@
 ﻿using LidkopingsZoo.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using LidkopingsZoo.Models.ViewModels;
+using LidkopingsZoo.Services.Tours;
 
 namespace LidkopingsZoo.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly TourServices _tourServices;
+        public HomeController(ILogger<HomeController> logger, TourServices tourServices)
         {
             _logger = logger;
+            _tourServices = tourServices;
         }
 
         public IActionResult Index()
@@ -21,9 +24,19 @@ namespace LidkopingsZoo.Controllers
         {
             return View();
         }
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
-            return View();
+            var AnimalList = await _tourServices.GetAllAnimals();
+            var GuideList = await _tourServices.GetAllGuides();
+            var GuideAnimalList = await _tourServices.GetAllguideAnimals();
+
+            var homeViewModel = new HomeViewModel
+            {
+                Animals = AnimalList,
+                Guides = GuideList,
+                GuideAnimals = GuideAnimalList,
+            };
+            return View(homeViewModel);
         }
         public IActionResult RecruitmentPage()
         {
