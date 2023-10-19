@@ -20,6 +20,7 @@ namespace LidkopingsZoo.Data
         }
         public DbSet<Visit> Visits { get; set; }
         public DbSet<Guide> Guides { get; set; }
+        public DbSet<GuideAnimal> guideAnimals { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Animal>()
@@ -31,6 +32,9 @@ namespace LidkopingsZoo.Data
                 .HasValue<Air>(1)
                 .HasValue<Land>(2)
                 .HasValue<Water>(3);
+
+            modelBuilder.Entity<GuideAnimal>()
+                .HasKey(ba => new { ba.AnimalId, ba.GuideId });
 
             modelBuilder.Entity<Air>()
                 .HasDiscriminator<string>("AirAnimal")?
