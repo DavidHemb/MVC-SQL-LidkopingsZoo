@@ -2,6 +2,7 @@ using LidkopingsZoo.Data;
 using LidkopingsZoo.Services.Tours;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -59,6 +60,7 @@ using(var scope = app.Services.CreateScope())
 }
 using (var scope = app.Services.CreateScope())
 {
+    //ADMIN
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
     string email = "Admin@mail.com";
     string password = "Admin1!";
@@ -70,6 +72,34 @@ using (var scope = app.Services.CreateScope())
         user.EmailConfirmed = true;
         await userManager.CreateAsync (user, password);
         await userManager.AddToRoleAsync(user, "Admin");
+    }
+    //GUIDES
+    userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    List<string> Emails = new List<string>();
+    Emails.Add("Guido");
+    Emails.Add("AceVentura");
+    Emails.Add("CrocodileDundee");
+    List<string> Passwords = new List<string>();
+    Passwords.Add("Guide1!");
+    Passwords.Add("Guide2!");
+    Passwords.Add("Guide3!");
+    int i = 0;
+    foreach (string emails in Emails)
+    { 
+        if (await userManager.FindByEmailAsync(Emails[i]) == null)
+        {
+            var user = new IdentityUser();
+            user.UserName = Emails[i];
+            user.Email = Emails[i] + "@mail.com";
+            user.EmailConfirmed = true;
+            await userManager.CreateAsync(user, Passwords[i]);
+            await userManager.AddToRoleAsync(user, "Guide");
+            i++;
+        }
+        else if (await userManager.FindByEmailAsync(Emails[i]) != null)
+        {
+            break;
+        }
     }
 }
 app.Run();

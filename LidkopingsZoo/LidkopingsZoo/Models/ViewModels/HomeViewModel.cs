@@ -2,8 +2,10 @@
 {
     public class HomeViewModel
     {
-        public List<int> Animals { get; set; }
-        public List<int> Guides { get; set; }
-        public List<int> GuideAnimals { get; set; }
+        public List<int> AnimalsIds { get; set; }
+        public List<int> GuidesIds { get; set; }
+        public List<int> GuideAnimalsIds { get; set; }
+
+        public List<Animal> Animals { get; set; }
     }
 }

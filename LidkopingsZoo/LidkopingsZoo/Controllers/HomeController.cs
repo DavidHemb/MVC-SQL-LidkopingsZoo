@@ -26,15 +26,29 @@ namespace LidkopingsZoo.Controllers
         }
         public async Task<IActionResult> Profile()
         {
-            var AnimalList = await _tourServices.GetAllAnimals();
-            var GuideList = await _tourServices.GetAllGuides();
-            var GuideAnimalList = await _tourServices.GetAllguideAnimals();
+            var AnimalIdList = await _tourServices.GetAllAnimalIds();
+            var GuideIdList = await _tourServices.GetAllGuideIds();
+            var GuideAnimalIdList = await _tourServices.GetAllguideAnimalIds();
+            List<Animal> AnimalList = new List<Animal>();
+            try
+            {
+                foreach (var Animal in AnimalIdList)
+                {
 
+                    AnimalList = await _tourServices.GetAllAnimals();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
             var homeViewModel = new HomeViewModel
             {
+                AnimalsIds = AnimalIdList,
+                GuidesIds = GuideIdList,
+                GuideAnimalsIds = GuideAnimalIdList,
+
                 Animals = AnimalList,
-                Guides = GuideList,
-                GuideAnimals = GuideAnimalList,
             };
             return View(homeViewModel);
         }

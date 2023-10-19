@@ -12,19 +12,26 @@ namespace LidkopingsZoo.Services.Tours
         {
             _context = context;
         }
-        public async Task<List<int>> GetAllAnimals()
+        public async Task<List<int>> GetAllAnimalIds()
         {
             return _context.Animal
                 .Select(r => r.Id)
                 .ToList();
         }
-        public async Task<List<int>> GetAllGuides()
+        public async Task<List<Animal>> GetAllAnimals()
+        {
+            var List = _context.Animal
+                .Where(r => r.Name != null)
+                .ToList();
+            return List;
+        }
+        public async Task<List<int>> GetAllGuideIds()
         {
             return _context.Guides
                 .Select(r => r.Id)
                 .ToList();
         }
-        public async Task<List<int>> GetAllguideAnimals()
+        public async Task<List<int>> GetAllguideAnimalIds()
         {
             return _context.guideAnimals
                 //.Select(r => r.GuideId)
