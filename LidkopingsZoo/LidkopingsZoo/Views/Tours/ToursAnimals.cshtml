@@ -1,21 +1,98 @@
 ﻿<link rel="stylesheet" href="~/css/tours.css" asp-append-version="true" />
+@model LidkopingsZoo.Models.ViewModels.ToursViewModel
 <!-- Title & Rules -->
 <h1 class="title">Lidköpings Zoo</h1>
-<h2 style="text-align:center;">(ANIMAL HABITAT)</h2>
+<h2 style="text-align:center;">Tour Center</h2>
 <h4 class="Rules">Booking tours are free in our Zoo to promote accessibility to exotic animals. How ever there are some restrictions: (1). MAX 5 people per tour (2). 3h per tour, (3). All tours are preformed during set hours (09:00 - 12:00 & 13:00 - 16:00) (4). Tours MUST be accompnied by trained guide.</h4>
 <h5 class="Rules">Obay these rules and restrictions for your, everyone around you and the animals safty. We dont want Kraken to escape again...</h5>
 <!-- Page -->
 <div class="gridV4">
-    <!-- Foreach animal induvidual -->
-    <div class="gridH4">
-        <div class="gridwindowsAIR">
-            <h5 class="gridwindowstext">(ANIMAL NAME)</h5>
-            <p class="gridwindowstext">This animal resides in (ANIMAL HABITAT)</p>
-            <p class="gridwindowstext"><a asp-controller="" asp-action="" style="color:blue;">Book here now!</a></p>
-        </div>
-        <div class="gridwindowsimg">
-            <img class="imageimg" src="~/assets/Kraken.jpg" alt="" style="justify-content: center; align-self: center;">
-        </div>
-    </div>
-
+    @{
+        bool activation = true;
+        //Type
+        int t = -1;
+    }
+    @while (activation)
+    {
+        //Name
+        int i = 0;
+        //Desc
+        int d = 1;
+        //Age
+        int a = 2;
+        //Habitat
+        int h = 3;
+        t++;
+        try
+        {
+            while (activation)
+            {
+                if (t == 3)
+                {
+                    activation = false;
+                    break;
+                }
+                foreach (var Animal in @Model.Animals[t])
+                {
+                    <!-- Foreach animal type -->
+                    @if (t == 0)
+                    {
+                        if (@Model.Animals[t][i] != null)
+                        {
+                            <div class="gridH4">
+                                <div class="gridwindowsAIR">
+                                    <h5 class="gridwindowstext">@Model.Animals[t][i]</h5>
+                                    <h6 class="gridwindowstext">Age: @Model.Animals[t][a]</h6>
+                                    <p class="gridwindowstext">This animal resides in the air habitat</p>
+                                    <p class="gridwindowstext"><a asp-controller="Tours" asp-action="" style="color:blue;">Book here now!</a></p>
+                                </div>
+                                <div class="gridwindowsimg">
+                                    <img class="imageimg" src="~/assets/Air.jpg" alt="" style="justify-content: center; align-self: center;">
+                                </div>
+                            </div>
+                        }
+                    }
+                    @if (t == 1)
+                    {
+                        if (@Model.Animals[t][i] != null)
+                        {
+                            <div class="gridH4">
+                                <div class="gridwindowsLAND">
+                                    <h5 class="gridwindowstext">@Model.Animals[t][i]</h5>
+                                    <h6 class="gridwindowstext">Age: @Model.Animals[t][a]</h6>
+                                    <p class="gridwindowstext">This animal resides in the land habitat</p>
+                                    <p class="gridwindowstext"><a asp-controller="Tours" asp-action="" style="color:blue;">Book here now!</a></p>
+                                </div>
+                                <div class="gridwindowsimg">
+                                    <img class="imageimg" src="~/assets/Earth.jpg" alt="" style="justify-content: center; align-self: center;">
+                                </div>
+                            </div>
+                        }
+                    }
+                    @if (t == 2)
+                    {
+                        if (@Model.Animals[t][i] != null)
+                        {
+                            <div class="gridH4">
+                                <div class="gridwindowsWATER">
+                                    <h5 class="gridwindowstext">@Model.Animals[t][i]</h5>
+                                    <h6 class="gridwindowstext">Age: @Model.Animals[t][a]</h6>
+                                    <p class="gridwindowstext">This animal resides in the water habitat</p>
+                                    <p class="gridwindowstext"><a asp-controller="Tours" asp-action="" style="color:blue;">Book here now!</a></p>
+                                </div>
+                                <div class="gridwindowsimg">
+                                    <img class="imageimg" src="~/assets/Water.jpg" alt="" style="justify-content: center; align-self: center;">
+                                </div>
+                            </div>
+                        }
+                    }
+                    i = i + 4;
+                    d = d + 4;
+                    a = a + 4;
+                    h = h + 4;
+                }
+            }
+        }
+        catch { }
+    }
 </div>

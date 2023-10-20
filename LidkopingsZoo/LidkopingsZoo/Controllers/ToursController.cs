@@ -38,9 +38,49 @@ namespace LidkopingsZoo.Controllers
             };
             return View(toursViewModel);
         }
-        public IActionResult ToursAnimals()
+        public async Task<IActionResult> ToursAnimals()
         {
-            return View();
+            var AnimalIdList = await _tourServices.GetAllAnimalIds();
+            List<List<string>> AnimalList = new List<List<string>>();
+            try
+            {
+                foreach (var Animal in AnimalIdList)
+                {
+
+                    AnimalList = await _tourServices.GetAllAnimals();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            var toursViewModel = new ToursViewModel
+            {
+                Animals = AnimalList,
+            };
+            return View(toursViewModel);
+        }
+        public async Task<IActionResult> ToursAllAnimals()
+        {
+            var AnimalIdList = await _tourServices.GetAllAnimalIds();
+            List<List<string>> AnimalList = new List<List<string>>();
+            try
+            {
+                foreach (var Animal in AnimalIdList)
+                {
+
+                    AnimalList = await _tourServices.GetAllAnimals();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            var toursViewModel = new ToursViewModel
+            {
+                Animals = AnimalList,
+            };
+            return View(toursViewModel);
         }
     }
 }

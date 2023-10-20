@@ -20,6 +20,20 @@ namespace LidkopingsZoo.Services.Tours
                 .Select(r => r.Id)
                 .ToList();
         }
+        public async Task<List<int>> GetAllGuideIds()
+        {
+            return _context.Guides
+                .Select(r => r.Id)
+                .ToList();
+        }
+
+        public async Task<List<int>> GetAllguideAnimalIds()
+        {
+            return _context.guideAnimals
+                //.Select(r => r.GuideId)
+                .Select(r => r.AnimalId)
+                .ToList();
+        }
         public async Task<List<List<string>>> GetAllAnimals()
         {
             //Name
@@ -113,23 +127,46 @@ namespace LidkopingsZoo.Services.Tours
             FullList.Add(WaterList);
             return FullList;
         }
-        public async Task<List<int>> GetAllGuideIds()
+        public async Task<List<List<string>>> GetAllAnimalsBy()
         {
-            return _context.Guides
-                .Select(r => r.Id)
+            //Name
+            var ListName = _context.Animal
+                .Where(r => r.SpeciesName == "")
+                .Select(r => r.Name)
                 .ToList();
+            //Desc
+            var ListDesc = _context.Animal
+                .Where(r => r.SpeciesName == "")
+                .Select(r => r.Description)
+                .ToList();
+            //Age
+            var ListAge = _context.Animal
+                .Where(r => r.SpeciesName == "")
+                .Select(r => r.Age)
+                .ToList();
+
+            //Summary
+            List<List<string>> FullList = new List<List<string>>();
+            List<string> AnimalList = new List<string>();
+
+            //Air
+            int i = 0;
+            foreach (var Names in ListName)
+            {
+                AnimalList.Add(ListName[i]);
+                AnimalList.Add(ListDesc[i]);
+                AnimalList.Add(ListAge[i].ToString());
+                AnimalList.Add("1");
+                i++;
+            }
+            //Finally
+            FullList.Add(AnimalList);
+            return FullList;
         }
         public async Task<List<Animal>> GetAllAnimalss()
         {
             return await _context.Animal
                 .ToListAsync();
-        }
-        public async Task<List<int>> GetAllguideAnimalIds()
-        {
-            return _context.guideAnimals
-                //.Select(r => r.GuideId)
-                .Select(r => r.AnimalId)
-                .ToList();
         }
     }
 }
