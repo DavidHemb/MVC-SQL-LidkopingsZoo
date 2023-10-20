@@ -6,6 +6,6 @@
         public List<int> GuidesIds { get; set; }
         public List<int> GuideAnimalsIds { get; set; }
 
-        public List<Animal> Animals { get; set; }
+        public List<List<string>> Animals { get; set; }
     }
 }

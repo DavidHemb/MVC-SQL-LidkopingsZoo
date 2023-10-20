@@ -1,4 +1,5 @@
 ﻿using LidkopingsZoo.Models;
+using LidkopingsZoo.Models.Elements;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using LidkopingsZoo.Models.ViewModels;
@@ -29,7 +30,7 @@ namespace LidkopingsZoo.Controllers
             var AnimalIdList = await _tourServices.GetAllAnimalIds();
             var GuideIdList = await _tourServices.GetAllGuideIds();
             var GuideAnimalIdList = await _tourServices.GetAllguideAnimalIds();
-            List<Animal> AnimalList = new List<Animal>();
+            List<List<string>> AnimalList = new List<List<string>>();
             try
             {
                 foreach (var Animal in AnimalIdList)
@@ -48,7 +49,7 @@ namespace LidkopingsZoo.Controllers
                 GuidesIds = GuideIdList,
                 GuideAnimalsIds = GuideAnimalIdList,
 
-                Animals = AnimalList,
+               //Animals = AnimalList,
             };
             return View(homeViewModel);
         }
