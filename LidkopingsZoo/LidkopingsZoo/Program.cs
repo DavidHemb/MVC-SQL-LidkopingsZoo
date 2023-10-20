@@ -89,7 +89,7 @@ using (var scope = app.Services.CreateScope())
         if (await userManager.FindByEmailAsync(Emails[i]) == null)
         {
             var user = new IdentityUser();
-            user.UserName = Emails[i];
+            user.UserName = Emails[i] + "@mail.com";
             user.Email = Emails[i] + "@mail.com";
             user.EmailConfirmed = true;
             await userManager.CreateAsync(user, Passwords[i]);
