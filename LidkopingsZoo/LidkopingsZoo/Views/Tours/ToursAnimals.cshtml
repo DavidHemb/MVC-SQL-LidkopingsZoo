@@ -38,7 +38,7 @@
                 foreach (var Animal in @Model.Animals[t])
                 {
                     <!-- Foreach animal type -->
-                    @if (Model.Animals[t][h] == "0")
+                    @if (Model.Animals[t][h] == "1")
                     {
                         if (@Model.Animals[t][i] != null)
                         {
@@ -57,7 +57,7 @@
                             </div>
                         }
                     }
-                    @if (Model.Animals[t][h] == "1")
+                    @if (Model.Animals[t][h] == "2")
                     {
                         if (@Model.Animals[t][i] != null)
                         {
@@ -76,7 +76,7 @@
                             </div>
                         }
                     }
-                    @if (Model.Animals[t][h] == "2")
+                    @if (Model.Animals[t][h] == "3")
                     {
                         if (@Model.Animals[t][i] != null)
                         {
