@@ -16,7 +16,6 @@ namespace LidkopingsZoo.Controllers
             _logger = logger;
             _tourServices = tourServices;
         }
-
         public IActionResult Index()
         {
             return View();
@@ -25,33 +24,9 @@ namespace LidkopingsZoo.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Profile()
+        public IActionResult Profile()
         {
-            var AnimalIdList = await _tourServices.GetAllAnimalIds();
-            var GuideIdList = await _tourServices.GetAllGuideIds();
-            var GuideAnimalIdList = await _tourServices.GetAllguideAnimalIds();
-            List<List<string>> AnimalList = new List<List<string>>();
-            try
-            {
-                foreach (var Animal in AnimalIdList)
-                {
-
-                    AnimalList = await _tourServices.GetAllAnimals();
-                }
-            }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            var homeViewModel = new HomeViewModel
-            {
-                AnimalsIds = AnimalIdList,
-                GuidesIds = GuideIdList,
-                GuideAnimalsIds = GuideAnimalIdList,
-
-               //Animals = AnimalList,
-            };
-            return View(homeViewModel);
+            return View();
         }
         public IActionResult RecruitmentPage()
         {

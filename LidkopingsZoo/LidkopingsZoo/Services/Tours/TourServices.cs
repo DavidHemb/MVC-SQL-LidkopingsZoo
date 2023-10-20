@@ -68,11 +68,6 @@ namespace LidkopingsZoo.Services.Tours
             List<string> WaterList = new List<string>();
             List<string> LandList = new List<string>();
 
-            List<string> Name = new List<string>();
-            List<string> Desc = new List<string>();
-            List<string> Age = new List<string>();
-            List<string> Habitat = new List<string>();
-
             //Air
             int i = 0;
             foreach (var Names in AirListName)
@@ -113,7 +108,6 @@ namespace LidkopingsZoo.Services.Tours
                 i++;
             }
             //Finally
-
             FullList.Add(AirList);
             FullList.Add(LandList);
             FullList.Add(WaterList);
@@ -124,6 +118,11 @@ namespace LidkopingsZoo.Services.Tours
             return _context.Guides
                 .Select(r => r.Id)
                 .ToList();
+        }
+        public async Task<List<Animal>> GetAllAnimalss()
+        {
+            return await _context.Animal
+                .ToListAsync();
         }
         public async Task<List<int>> GetAllguideAnimalIds()
         {

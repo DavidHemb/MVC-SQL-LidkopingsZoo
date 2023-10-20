@@ -13,15 +13,15 @@ body {
     .gridV4 {
         margin: 5%;
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-auto-rows: auto;
         background-color: lightgray;
         border: solid darkgray 3px;
         border-radius: 18px;
     }
-
     .gridH4 {
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr;
         border: solid 4px;
         border-radius: 18px;
         margin: 5%;
