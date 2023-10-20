@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LidkopingsZoo.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231019085844_SeedGuideAnimals")]
-    partial class SeedGuideAnimals
+    [Migration("20231020143814_SeedGuides")]
+    partial class SeedGuides
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,13 +46,14 @@ namespace LidkopingsZoo.Data.Migrations
                     b.Property<int>("HabitatId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("HasHabitat")
-                        .HasColumnType("bit");
-
                     b.Property<string>("LandAnimal")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpeciesName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -64,7 +65,7 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.ToTable("Animal");
 
-                    b.HasDiscriminator<string>("WaterAnimal");
+                    b.HasDiscriminator<string>("WaterAnimal").HasValue("Animal");
 
                     b.UseTphMappingStrategy();
                 });
@@ -92,6 +93,10 @@ namespace LidkopingsZoo.Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
