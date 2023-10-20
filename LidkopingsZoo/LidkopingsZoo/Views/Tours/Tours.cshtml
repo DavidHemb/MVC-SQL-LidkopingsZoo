@@ -1,20 +1,70 @@
 ﻿<link rel="stylesheet" href="~/css/tours.css" asp-append-version="true" />
+@model LidkopingsZoo.Models.ViewModels.ToursViewModel
 <!-- Title & Rules -->
 <h1 class="title">Lidköpings Zoo</h1>
 <h2 style="text-align:center;">(ANIMAL HABITAT)</h2>
 <h4 class="Rules">Booking tours are free in our Zoo to promote accessibility to exotic animals. How ever there are some restrictions: (1). MAX 5 people per tour (2). 3h per tour, (3). All tours are preformed during set hours (09:00 - 12:00 & 13:00 - 16:00) (4). Tours MUST be accompnied by trained guide.</h4>
 <h5 class="Rules">Obay these rules and restrictions for your, everyone around you and the animals safty. We dont want Kraken to escape again...</h5>
 <!-- Page -->
-<div class="gridV4">
-    <!-- Foreach animal induvidual -->
-    <div class="gridH4">
-        <div class="gridwindowsAIR">
-            <h5 class="gridwindowstext">(ANIMAL NAME)</h5>
-            <p class="gridwindowstext">This animal resides in (ANIMAL HABITAT)</p>
-            <p class="gridwindowstext"><a asp-controller="Tours" asp-action="ToursAnimals" style="color:blue;">Book here now!</a></p>
-        </div>
-        <div class="gridwindowsimg">
-            <img class="imageimg" src="~/assets/Kraken.jpg" alt="" style="justify-content: center; align-self: center;">
-        </div>
-    </div>
+<div class="gridV5">
+    @{int i = -1;}
+    @while (true)
+    {
+        i++;
+        if(i == 3)
+        {
+            break;
+        }
+        int j = 0;
+        @foreach (var type in Model.Animals[i][j])
+        {
+            try
+            {
+                if (@Model.Animals[i][j] != null)
+                {
+                            @if (i == 0)
+                            {
+                                <div class="gridH4">
+                                    <div class="gridwindowsAIR">
+                                        <h5 class="gridwindowstext">@Model.Animals[i][j]</h5>
+                                <p class="gridwindowstext">This animal resides in the air habitat</p>
+                                <p class="gridwindowstext"><a href="@Url.Action("ToursAnimals", "Tours", new { SpeciesName = @Model.Animals[i][j] })" style="color:blue;">Book here now!</a></p>
+                                    </div>
+                                    <div class="gridwindowsimg">
+                                        <img class="imageimg" src="~/assets/Air.jpg" alt="" style="justify-content: center; align-self: center;">
+                                    </div>
+                                </div>
+                            }
+                            @if (i == 1)
+                            {
+                        <div class="gridH4">
+                            <div class="gridwindowsLAND">
+                                <h5 class="gridwindowstext">@Model.Animals[i][j]</h5>
+                                <p class="gridwindowstext">This animal resides in the air habitat</p>
+                                <p class="gridwindowstext"><a href="@Url.Action("ToursAnimals", "Tours", new { SpeciesName = @Model.Animals[i] })" style="color:blue;">Book here now!</a></p>
+                            </div>
+                            <div class="gridwindowsimg">
+                                <img class="imageimg" src="~/assets/Earth.jpg" alt="" style="justify-content: center; align-self: center;">
+                            </div>
+                        </div>
+                            }
+                            @if (i == 2)
+                            {
+                        <div class="gridH4">
+                            <div class="gridwindowsWATER">
+                                <h5 class="gridwindowstext">@Model.Animals[i][j]</h5>
+                                <p class="gridwindowstext">This animal resides in the air habitat</p>
+                                <p class="gridwindowstext"><a href="@Url.Action("ToursAnimals", "Tours", new { SpeciesName = @Model.Animals[i] })" style="color:blue;">Book here now!</a></p>
+                            </div>
+                            <div class="gridwindowsimg">
+                                <img class="imageimg" src="~/assets/Water.jpg" alt="" style="justify-content: center; align-self: center;">
+                            </div>
+                        </div>
+                            }
+                    { j++; }
+                }
+            }
+            catch{}
+        }
+    }
 </div>

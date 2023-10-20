@@ -20,8 +20,11 @@
         int d = 1;
         //Age
         int a = 2;
+        //Species
+        int s = 3;
         //Habitat
-        int h = 3;
+        int h = 4;
+        
         t++;
         try
         {
@@ -35,14 +38,16 @@
                 foreach (var Animal in @Model.Animals[t])
                 {
                     <!-- Foreach animal type -->
-                    @if (t == 0)
+                    @if (Model.Animals[t][h] == "0")
                     {
                         if (@Model.Animals[t][i] != null)
                         {
                             <div class="gridH4">
                                 <div class="gridwindowsAIR">
                                     <h5 class="gridwindowstext">@Model.Animals[t][i]</h5>
+                                    <h6 class="gridwindowstext">Species: @Model.Animals[t][s]</h6>
                                     <h6 class="gridwindowstext">Age: @Model.Animals[t][a]</h6>
+                                    <h6 class="gridwindowstext">Description: @Model.Animals[t][d]</h6>
                                     <p class="gridwindowstext">This animal resides in the air habitat</p>
                                     <p class="gridwindowstext"><a asp-controller="Tours" asp-action="" style="color:blue;">Book here now!</a></p>
                                 </div>
@@ -52,15 +57,17 @@
                             </div>
                         }
                     }
-                    @if (t == 1)
+                    @if (Model.Animals[t][h] == "1")
                     {
                         if (@Model.Animals[t][i] != null)
                         {
                             <div class="gridH4">
                                 <div class="gridwindowsLAND">
                                     <h5 class="gridwindowstext">@Model.Animals[t][i]</h5>
+                                    <h6 class="gridwindowstext">Species: @Model.Animals[t][s]</h6>
                                     <h6 class="gridwindowstext">Age: @Model.Animals[t][a]</h6>
-                                    <p class="gridwindowstext">This animal resides in the land habitat</p>
+                                    <h6 class="gridwindowstext">Description: @Model.Animals[t][d]</h6>
+                                    <p class="gridwindowstext">This animal resides in the air habitat</p>
                                     <p class="gridwindowstext"><a asp-controller="Tours" asp-action="" style="color:blue;">Book here now!</a></p>
                                 </div>
                                 <div class="gridwindowsimg">
@@ -69,15 +76,17 @@
                             </div>
                         }
                     }
-                    @if (t == 2)
+                    @if (Model.Animals[t][h] == "2")
                     {
                         if (@Model.Animals[t][i] != null)
                         {
                             <div class="gridH4">
                                 <div class="gridwindowsWATER">
                                     <h5 class="gridwindowstext">@Model.Animals[t][i]</h5>
+                                    <h6 class="gridwindowstext">Species: @Model.Animals[t][s]</h6>
                                     <h6 class="gridwindowstext">Age: @Model.Animals[t][a]</h6>
-                                    <p class="gridwindowstext">This animal resides in the water habitat</p>
+                                    <h6 class="gridwindowstext">Description: @Model.Animals[t][d]</h6>
+                                    <p class="gridwindowstext">This animal resides in the air habitat</p>
                                     <p class="gridwindowstext"><a asp-controller="Tours" asp-action="" style="color:blue;">Book here now!</a></p>
                                 </div>
                                 <div class="gridwindowsimg">
@@ -86,10 +95,11 @@
                             </div>
                         }
                     }
-                    i = i + 4;
-                    d = d + 4;
-                    a = a + 4;
-                    h = h + 4;
+                    i = i + 5;
+                    d = d + 5;
+                    a = a + 5;
+                    h = h + 5;
+                    s = s + 5;
                 }
             }
         }

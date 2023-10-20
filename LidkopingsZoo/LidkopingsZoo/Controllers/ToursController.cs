@@ -18,15 +18,10 @@ namespace LidkopingsZoo.Controllers
         }
         public async Task<IActionResult> Tours()
         {
-            var AnimalIdList = await _tourServices.GetAllAnimalIds();
             List<List<string>> AnimalList = new List<List<string>>();
             try
             {
-                foreach (var Animal in AnimalIdList)
-                {
-
-                    AnimalList = await _tourServices.GetAllAnimals();
-                }
+                AnimalList = await _tourServices.GetAllSpeciesName();
             }
             catch (Exception ex)
             {
@@ -38,7 +33,9 @@ namespace LidkopingsZoo.Controllers
             };
             return View(toursViewModel);
         }
-        public async Task<IActionResult> ToursAnimals()
+        [HttpPost]
+        [AcceptVerbs("GET", "POST")]
+        public async Task<IActionResult> ToursAnimals(string SpeciesName)
         {
             var AnimalIdList = await _tourServices.GetAllAnimalIds();
             List<List<string>> AnimalList = new List<List<string>>();
@@ -47,7 +44,7 @@ namespace LidkopingsZoo.Controllers
                 foreach (var Animal in AnimalIdList)
                 {
 
-                    AnimalList = await _tourServices.GetAllAnimals();
+                    AnimalList = await _tourServices.GetAllAnimalsBySpeciesName(SpeciesName);
                 }
             }
             catch (Exception ex)

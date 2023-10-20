@@ -3,6 +3,7 @@ using LidkopingsZoo.Models;
 using LidkopingsZoo.Models.Elements;
 using LidkopingsZoo.Models.Visitation;
 using Microsoft.EntityFrameworkCore;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace LidkopingsZoo.Services.Tours
@@ -75,6 +76,19 @@ namespace LidkopingsZoo.Services.Tours
                 .Where(r => r.HabitatId == 3)
                 .Select(r => r.Age)
                 .ToList();
+            //SpeciesName
+            var AirListSpecies = _context.Animal
+                .Where(r => r.HabitatId == 1)
+                .Select(r => r.SpeciesName)
+                .ToList();
+            var LandListSpecies = _context.Animal
+                .Where(r => r.HabitatId == 2)
+                .Select(r => r.SpeciesName)
+                .ToList();
+            var WaterListSpecies = _context.Animal
+                .Where(r => r.HabitatId == 3)
+                .Select(r => r.SpeciesName)
+                .ToList();
 
             //Summary
             List<List<string>> FullList = new List<List<string>>();
@@ -93,6 +107,8 @@ namespace LidkopingsZoo.Services.Tours
                 AirList.Add(AirListAge[i].ToString());
 
                 AirList.Add("1");
+
+                AirList.Add(AirListSpecies[i]);
                 i++;
             }
             //Land
@@ -106,6 +122,8 @@ namespace LidkopingsZoo.Services.Tours
                 LandList.Add(LandListAge[i].ToString());
 
                 LandList.Add("1");
+
+                LandList.Add(LandListSpecies[i]);
                 i++;
             }
             //Water
@@ -119,6 +137,8 @@ namespace LidkopingsZoo.Services.Tours
                 WaterList.Add(WaterListAge[i].ToString());
 
                 WaterList.Add("1");
+
+                WaterList.Add(WaterListSpecies[i]);
                 i++;
             }
             //Finally
@@ -127,36 +147,98 @@ namespace LidkopingsZoo.Services.Tours
             FullList.Add(WaterList);
             return FullList;
         }
-        public async Task<List<List<string>>> GetAllAnimalsBy()
+        public async Task<List<List<string>>> GetAllSpeciesName()
+        {
+            //SpeciesName
+            var AirSpeciesName = _context.Animal
+                .Where(r => r.HabitatId == 1)
+                .Select(r => r.SpeciesName)
+                .Distinct()
+                .ToList();
+            var LandSpeciesName = _context.Animal
+                .Where(r => r.HabitatId == 2)
+                .Select(r => r.SpeciesName)
+                .Distinct()
+                .ToList();
+            var WaterSpeciesName = _context.Animal
+                .Where(r => r.HabitatId == 3)
+                .Select(r => r.SpeciesName)
+                .Distinct()
+                .ToList();
+
+            //Summary
+            List<List<string>> FullList = new List<List<string>>();
+            List<string> AirList = new List<string>();
+            List<string> WaterList = new List<string>();
+            List<string> LandList = new List<string>();
+
+            //Air
+            int i = 0;
+            foreach (var Names in AirSpeciesName)
+            {
+                AirList.Add(AirSpeciesName[i]);
+
+                i++;
+            }
+            //Land
+            i = 0;
+            foreach (var Names in LandSpeciesName)
+            {
+                LandList.Add(LandSpeciesName[i]);
+
+                i++;
+            }
+            //Water
+            i = 0;
+            foreach (var Names in WaterSpeciesName)
+            {
+                WaterList.Add(WaterSpeciesName[i]);
+
+                i++;
+            }
+
+            //Finally
+            FullList.Add(AirList);
+            FullList.Add(LandList);
+            FullList.Add(WaterList);
+            return FullList;
+        }
+        public async Task<List<List<string>>> GetAllAnimalsBySpeciesName(string SpeciesName)
         {
             //Name
             var ListName = _context.Animal
-                .Where(r => r.SpeciesName == "")
+                .Where(r => r.SpeciesName == SpeciesName)
                 .Select(r => r.Name)
                 .ToList();
             //Desc
             var ListDesc = _context.Animal
-                .Where(r => r.SpeciesName == "")
+                .Where(r => r.SpeciesName == SpeciesName)
                 .Select(r => r.Description)
                 .ToList();
             //Age
             var ListAge = _context.Animal
-                .Where(r => r.SpeciesName == "")
+                .Where(r => r.SpeciesName == SpeciesName)
                 .Select(r => r.Age)
+                .ToList();
+            //SpeciesName
+            var ListHabitatId = _context.Animal
+                .Where(r => r.SpeciesName == SpeciesName)
+                .Select(r => r.HabitatId)
                 .ToList();
 
             //Summary
             List<List<string>> FullList = new List<List<string>>();
             List<string> AnimalList = new List<string>();
 
-            //Air
             int i = 0;
             foreach (var Names in ListName)
             {
                 AnimalList.Add(ListName[i]);
                 AnimalList.Add(ListDesc[i]);
                 AnimalList.Add(ListAge[i].ToString());
-                AnimalList.Add("1");
+                AnimalList.Add(SpeciesName);
+                AnimalList.Add(ListHabitatId[i].ToString());
+                
                 i++;
             }
             //Finally

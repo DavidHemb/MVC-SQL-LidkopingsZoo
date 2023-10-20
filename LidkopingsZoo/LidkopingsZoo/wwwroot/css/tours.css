@@ -19,6 +19,15 @@ body {
         border: solid darkgray 3px;
         border-radius: 18px;
     }
+    .gridV5 {
+        margin: 5%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-auto-rows: auto;
+        background-color: lightgray;
+        border: solid darkgray 3px;
+        border-radius: 18px;
+    }
     .gridH4 {
         display: grid;
         grid-template-rows: 1fr;
