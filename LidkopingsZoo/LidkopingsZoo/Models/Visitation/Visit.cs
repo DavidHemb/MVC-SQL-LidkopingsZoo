@@ -10,5 +10,6 @@ namespace LidkopingsZoo.Models.Visitation
         public Guide Guides { get; set; }
         public IdentityUser User { get; set; }
         public int Visitors { get; set; }
+        public string Species { get; set; }
     }
 }

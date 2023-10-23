@@ -48,5 +48,14 @@ namespace LidkopingsZoo.Services.Guides
                 .Distinct()
                 .ToList();
         }
+        public async Task<List<Visit>> GetBookedVisitsByGuide(int guideId)
+        {
+            return _context.Visits
+                .Where(g => g.Guides.Id == guideId).ToList();
+        }
+        public async Task<List<Visit>> GetBookedVisits()
+        {
+            return _context.Visits.ToList();
+        }
     }
 }

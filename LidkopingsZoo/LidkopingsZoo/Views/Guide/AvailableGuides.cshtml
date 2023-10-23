@@ -9,18 +9,19 @@
     List<string> formattedDates = new List<string>();
     DateTime today = DateTime.Today;
 
-    for (int i = 0; i < 6; i++) // inklusive dagens datum och 5 kommande dagar
+    for (int i = 0; i < 6; i++) // Gets todays date and 5 days forward.
     {
         formattedDates.Add(today.AddDays(i).ToString("dd/MM"));
     }
+
 }
 
 <!-- Title & Rules -->
 <h1 class="title">Lidköpings Zoo</h1>
 <h2 style="text-align:center;">Available Guides for @Model.animals[0][3]s </h2>
 <div class="gridV4">
-@foreach (var guide in Model.guides)
-{
+    @foreach (var guide in Model.guides)
+    {
         <div class="gridH4">
             <div class="gridwindowsAIR">
                 <h5 class="gridwindowstext">@guide.Name</h5>
@@ -36,21 +37,59 @@
                         <tr>
                             <th>Date</th>
                             <th>Morning</th>
-                            <th>Afternoon </th>
+                            <th>Afternoon</th>
                         </tr>
                     </thead>
                     <tbody>
                         @for (int i = 0; i < formattedDates.Count; i++)
                         {
+                            var currentDate = formattedDates[i];
+                            var isMorningClickable = true; // För morgonen
+                            var isAfternoonClickable = true; // För eftermiddagen
+
+                            // Här kan du implementera din logik baserat på din lista av besök (visits)
+                            foreach (var visit in Model.bookedVisits)
+                            {
+                                if (visit.Guides.Id == guide.Id && visit.VisitDay.ToString("dd/MM") == currentDate)
+                                {
+                                    if (visit.VisitTime.Contains("Morning"))
+                                    {
+                                        isMorningClickable = false;
+                                    }
+                                    if (visit.VisitTime.Contains("Afternoon"))
+                                    {
+                                        isAfternoonClickable = false;
+                                    }
+                                }
+                            }
+
                             <tr>
-                                <td><a>@formattedDates[i]</a></td>
-                                <td><a href="" style="text-decoration:none">09-12</a></td>
-                                <td><a href="" style="text-decoration:none">13-16</a></td>
+                                <td><a>@currentDate</a></td>
+                                <td>
+                                    @if (isMorningClickable)
+                                    {
+                                        <a href="" style="text-decoration:none">09-12</a>
+                                    }
+                                    else
+                                    {
+                                        <span style="text-decoration: line-through;">09-12</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (isAfternoonClickable)
+                                    {
+                                        <a href="" style="text-decoration:none">13-16</a>
+                                    }
+                                    else
+                                    {
+                                        <span style="text-decoration: line-through;">13-16</span>
+                                    }
+                                </td>
                             </tr>
                         }
                     </tbody>
                 </table>
             </div>
         </div>
-}
+    }
 </div>

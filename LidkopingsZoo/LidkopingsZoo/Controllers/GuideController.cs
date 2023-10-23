@@ -57,10 +57,12 @@ namespace LidkopingsZoo.Controllers
         {
             List<Guide> guides = await _guideServices.GetGuidesByCompetence(SpeciesName);
             var animals = await _tourServices.GetAllAnimalsBySpeciesName(SpeciesName);
+            var bookedVisits = await _guideServices.GetBookedVisits();
             var viewModel = new GuideAnimalsVievModel()
             {
                 animals = animals,
-                guides = guides
+                guides = guides,
+                bookedVisits = bookedVisits
             };
 
             return View("~/views/guide/availableguides.cshtml", viewModel);
