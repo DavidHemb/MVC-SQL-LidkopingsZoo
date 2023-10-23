@@ -11,5 +11,9 @@ namespace LidkopingsZoo.Controllers
         {
             return View();
         }
+        public IActionResult AddAnimals()
+        {
+            return View();
+        }
     }
 }
