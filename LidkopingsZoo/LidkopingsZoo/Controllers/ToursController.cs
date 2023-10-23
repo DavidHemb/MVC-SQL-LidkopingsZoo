@@ -9,9 +9,9 @@ namespace LidkopingsZoo.Controllers
 {
     public class ToursController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<ToursController> _logger;
         private readonly TourServices _tourServices;
-        public ToursController(ILogger<HomeController> logger, TourServices tourServices)
+        public ToursController(ILogger<ToursController> logger, TourServices tourServices)
         {
             _logger = logger;
             _tourServices = tourServices;

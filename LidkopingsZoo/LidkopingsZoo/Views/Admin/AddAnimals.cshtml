@@ -1,5 +1,29 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+<form method="post" asp-controller="Admin" asp-action="AddAnimalMethod">
+    <label for="name">Name</label><br>
+    <input type="text" id="name" name="name"><br>
+
+    <label for="desc">Description</label><br>
+    <input type="text" id="desc" name="desc"><br>
+
+    <label for="age">Age</label><br>
+    <input type="number" id="age" name="age"><br>
+
+    <label for="habitat">Habitat Air(1) Land(2) Water(3)</label><br>
+    <input type="number" id="habitat" name="habitat" min="1" max="3"><br>
+
+    <label for="specialattribute">Special attribute Air(MaxAttitude) Land(Speed) Water(DivingDepth)</label><br>
+    <input type="number" id="specialattribute" name="specialattribute"><br>
+
+    <label for="">Species</label><br>
+    <select class="form-select" aria-label="Pick species" name="authorId" id="genre-dropdown">
+        
+        <option selected>Pick species</option>
+            @{int i = 0;}
+            @foreach (var Species in ViewBag.Species[0])
+            {
+                <option value="@ViewBag.Species[0][i]">@ViewBag.Species[0][i]</option>
+                i++;
+            }
+    </select>
+</form>

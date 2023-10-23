@@ -1,6 +1,7 @@
 using LidkopingsZoo.Data;
 using LidkopingsZoo.Services.Guide;
 using LidkopingsZoo.Services.Tours;
+using LidkopingsZoo.Services.Admin;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddScoped<TourServices>();
 builder.Services.AddScoped<GuideServices>();
+builder.Services.AddScoped<AdminServices>();
 
 builder.Services.AddControllersWithViews();
 

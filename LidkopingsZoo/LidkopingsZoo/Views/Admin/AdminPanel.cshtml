@@ -1,2 +1,19 @@
-﻿<h1>Admin Panel</h1>
-<a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddAnimals">Add Animals</a>
+﻿<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+<h1>Admin Panel</h1>
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+        <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="AddAnimals">Add Animals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="EditAnimals">Edit Animals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="RemoveAnimals">Remove Animals</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

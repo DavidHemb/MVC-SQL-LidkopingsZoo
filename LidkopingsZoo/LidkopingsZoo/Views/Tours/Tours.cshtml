@@ -41,7 +41,7 @@
                             <div class="gridwindowsLAND">
                                 <h5 class="gridwindowstext">@Model.Animals[i][j]</h5>
                                 <p class="gridwindowstext">This animal resides in the air habitat</p>
-                                <p class="gridwindowstext"><a href="@Url.Action("ToursAnimals", "Tours", new { SpeciesName = @Model.Animals[i] })" style="color:blue;">Book here now!</a></p>
+                                <p class="gridwindowstext"><a href="@Url.Action("ToursAnimals", "Tours", new { SpeciesName = @Model.Animals[i][j] })" style="color:blue;">Book here now!</a></p>
                             </div>
                             <div class="gridwindowsimg">
                                 <img class="imageimg" src="~/assets/Earth.jpg" alt="" style="justify-content: center; align-self: center;">
@@ -54,7 +54,7 @@
                             <div class="gridwindowsWATER">
                                 <h5 class="gridwindowstext">@Model.Animals[i][j]</h5>
                                 <p class="gridwindowstext">This animal resides in the air habitat</p>
-                                <p class="gridwindowstext"><a href="@Url.Action("ToursAnimals", "Tours", new { SpeciesName = @Model.Animals[i] })" style="color:blue;">Book here now!</a></p>
+                                <p class="gridwindowstext"><a href="@Url.Action("ToursAnimals", "Tours", new { SpeciesName = @Model.Animals[i][j] })" style="color:blue;">Book here now!</a></p>
                             </div>
                             <div class="gridwindowsimg">
                                 <img class="imageimg" src="~/assets/Water.jpg" alt="" style="justify-content: center; align-self: center;">
