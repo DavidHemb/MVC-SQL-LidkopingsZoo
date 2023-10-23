@@ -2,10 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using LidkopingsZoo.Services.Admin;
 using System.Data;
-using LidkopingsZoo.Models;
-using LidkopingsZoo.Models.Animals.LandAnimals;
-using LidkopingsZoo.Models.Animals.AirAnimals;
-using LidkopingsZoo.Models.Animals.WaterAnimals;
 
 namespace LidkopingsZoo.Controllers
 {
@@ -37,18 +33,20 @@ namespace LidkopingsZoo.Controllers
             ViewBag.Species = SpeciesList;
             return View(ViewBag);
         }
-        [HttpPost]
-        public async Task<IActionResult> AddAnimalMethod(string name, string desc, int age, int habitat, int specialattribute, string species)
+        [HttpGet]
+        public async Task<IActionResult> AddAnimalMethod()
         {
+            List<List<string>> SpeciesList = new List<List<string>>();
             try
             {
-                //Animal animal = new Animal(name, desc, age, habitat, species);
+                SpeciesList = await _adminServices.GetAllSpeciesNameInRow();
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return RedirectToAction("AdminPanel");
+            
+            return View(ViewBag);
         }
     }
 }
