@@ -1,4 +1,5 @@
 ﻿using LidkopingsZoo.Data;
+using LidkopingsZoo.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace LidkopingsZoo.Services.Admin
@@ -9,6 +10,16 @@ namespace LidkopingsZoo.Services.Admin
         public AdminServices(ApplicationDbContext context)
         {
             _context = context;
+        }
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
+        }
+        public bool AddAnimal(Animal animal)
+        {
+            _context.Animal.Add(animal);
+            return Save();
         }
         public async Task<List<List<string>>> GetAllSpeciesNameInRow()
         {
