@@ -80,9 +80,9 @@ using (var scope = app.Services.CreateScope())
     //GUIDES
     userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
     List<string> Emails = new List<string>();
-    Emails.Add("Guido The Guide");
-    Emails.Add("Ace Ventura");
-    Emails.Add("Crocodile Dundee");
+    Emails.Add("GuidoTheGuide");
+    Emails.Add("AceVentura");
+    Emails.Add("CrocodileDundee");
     List<string> Passwords = new List<string>();
     Passwords.Add("Guide1!");
     Passwords.Add("Guide2!");
@@ -93,8 +93,8 @@ using (var scope = app.Services.CreateScope())
         if (await userManager.FindByEmailAsync(Emails[i]) == null)
         {
             var user = new IdentityUser();
-            user.UserName = Emails[i];
-            user.Email = Emails[i].Replace(" ", "") + "@mail.com";
+            user.UserName = Emails[i] + "@mail.com";
+            user.Email = Emails[i]+ "@mail.com";
             user.EmailConfirmed = true;
             await userManager.CreateAsync(user, Passwords[i]);
             await userManager.AddToRoleAsync(user, "Guide");
