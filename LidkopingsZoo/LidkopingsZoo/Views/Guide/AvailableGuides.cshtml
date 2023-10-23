@@ -1,0 +1,25 @@
+﻿<link rel="stylesheet" href="~/css/tours.css" asp-append-version="true" />
+@model LidkopingsZoo.Models.ViewModels.GuideAnimalsVievModel
+<!-- Title & Rules -->
+<h1 class="title">Lidköpings Zoo</h1>
+<h2 style="text-align:center;">Available Guides for @Model.animals[0][3]s </h2>
+<div class="gridV4">
+@foreach (var guide in Model.guides)
+{
+    <div class="gridH4">
+        <div class="gridwindowsAIR">
+            <h5 class="gridwindowstext">@guide.Name</h5>
+            <h6 class="gridwindowstext">@guide.Email</h6>
+        </div>
+        <div class="gridwindowsimg">
+            <img class="imageimg" src="~/assets/Air.jpg" alt="" style="justify-content: center; align-self: center;">
+        </div>
+        <h6 class="gridwindowstext"><a href="">Pick me!</a></h6>
+    </div>
+ }
+ </div>
+<!-- Page -->
+
+
+@{
+}

@@ -1,5 +1,5 @@
 using LidkopingsZoo.Data;
-using LidkopingsZoo.Services.Guide;
+using LidkopingsZoo.Services.Guides;
 using LidkopingsZoo.Services.Tours;
 using LidkopingsZoo.Services.Admin;
 using Microsoft.AspNetCore.Identity;

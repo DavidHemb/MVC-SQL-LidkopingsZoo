@@ -7,7 +7,8 @@ namespace LidkopingsZoo.Models.ViewModels
     {
         public Guide guide { get; set; }
         public Animal animal { get; set; }
-        public List<Animal> animals { get; set; }
+        public List<Guide> guides { get; set; }
+        public List<List<string>> animals { get; set; }
 
     }
 }
