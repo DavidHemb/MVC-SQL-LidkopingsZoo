@@ -5,11 +5,14 @@ namespace LidkopingsZoo.Models.Animals.AirAnimals
     public class Goose : Air
     {
         public override int MaxAltitude { get; set; }
-        public Goose(int MaxAltitude, string name, string description) : base(MaxAltitude, name, description)
+        public Goose(string name, string description, int age, int MaxAltitude) : base(name, description, MaxAltitude)
         {
+            this.Name = name;
+            this.Description = description;
+            this.Age = age;
+            this.SpeciesName = "Goose";
+            this.HabitatId = 1;
             this.MaxAltitude = 8800;
-            this.Name = "Goose";
-            this.Description = "A goose (pl: geese) is a bird of any of several waterfowl species in the family Anatidae. This group comprises the genera Anser (the grey geese and white geese) and Branta (the black geese). Some other birds, mostly related to the shelducks, have \"goose\" as part of their names. More distantly related members of the family Anatidae are swans, most of which are larger than true geese, and ducks, which are smaller.";
         }
     }
 }

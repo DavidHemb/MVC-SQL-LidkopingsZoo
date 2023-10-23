@@ -4,11 +4,11 @@
     {
         //KM/H
         public abstract int Speed { get; set; }
-        public Land(int Speed, string name, string description) : base(name, description)
+        public Land(string name, string description, int speed) : base(name, description)
         {
-            this.Speed = Speed;
             this.Name = name;
             this.Description = description;
+            this.Speed = speed;
         }
         public void IRun()
         {

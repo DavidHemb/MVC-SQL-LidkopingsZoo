@@ -4,11 +4,11 @@
     {
         //METERS
         public abstract int DivingDepth { get; set; }
-        public Water(int DivingDepth, string name, string description) : base(name, description)
+        public Water(string name, string description, int divingdepth) : base(name, description)
         {
-            this.DivingDepth = DivingDepth;
-            Name = name;
-            Description = description;
+            this.Name = name;
+            this.Description = description;
+            this.DivingDepth = divingdepth;
         }
         public void ISwim()
         {

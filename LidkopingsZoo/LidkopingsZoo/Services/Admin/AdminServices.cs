@@ -21,6 +21,20 @@ namespace LidkopingsZoo.Services.Admin
             _context.Animal.Add(animal);
             return Save();
         }
+        public async Task<bool> Edit(Animal animal)
+        {
+            _context.Animal.Update(animal);
+            return Save();
+        }
+        public async Task<bool> Delete(Animal animal)
+        {
+            _context.Animal.Remove(animal);
+            return Save();
+        }
+        public async Task<Animal> GetAnimalById(int id)
+        {
+            return _context.Animal.Where(b => b.Id == id).FirstOrDefault();
+        }
         public async Task<List<List<string>>> GetAllSpeciesNameInRow()
         {
             //SpeciesName

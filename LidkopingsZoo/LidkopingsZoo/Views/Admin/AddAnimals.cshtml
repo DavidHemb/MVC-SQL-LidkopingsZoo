@@ -1,4 +1,5 @@
-﻿<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
+﻿<partial name="./_AdminHeader"/>
+<link rel="stylesheet" href="~/css/admin.css" asp-append-version="true" />
 <form method="post" asp-controller="Admin" asp-action="AddAnimalMethod">
     <label for="name">Name</label><br>
     <input type="text" id="name" name="name"><br>
@@ -8,12 +9,6 @@
 
     <label for="age">Age</label><br>
     <input type="number" id="age" name="age"><br>
-
-    <label for="habitat">Habitat Air(1) Land(2) Water(3)</label><br>
-    <input type="number" id="habitat" name="habitat" min="1" max="3"><br>
-
-    <label for="specialattribute">Special attribute Air(MaxAttitude) Land(Speed) Water(DivingDepth)</label><br>
-    <input type="number" id="specialattribute" name="specialattribute"><br>
 
     <label for="">Species</label><br>
     <select class="form-select" aria-label="Pick species" name="species" id="species-dropdown">
@@ -25,5 +20,7 @@
                 <option value="@ViewBag.Species[0][i]">@ViewBag.Species[0][i]</option>
                 i++;
             }
-    </select>
+    </select><br>
+
+    <button type="submit" class="btn btn-primary">Add Animal</button>
 </form>

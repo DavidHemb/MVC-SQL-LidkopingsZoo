@@ -10,8 +10,8 @@
         public string SpeciesName { get; set; }
         public Animal(string name, string description)
         {
-        this.Name = name;
-        this.Description = description;
+            this.Name = name;
+            this.Description = description;
         }
         public void Move()
         {
