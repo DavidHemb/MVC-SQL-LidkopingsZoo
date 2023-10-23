@@ -122,3 +122,13 @@ body {
     background-color: lightgreen;
     border-radius: 12px;
 }
+
+.availability-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.availability-table th, .availability-table td {
+    border: 1px solid black; /* Ändra kantlinjernas färg till svart */
+    padding: 5px;
+}
