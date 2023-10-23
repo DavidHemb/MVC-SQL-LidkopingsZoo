@@ -4,7 +4,7 @@
 <h1 class="title">Lidköpings Zoo</h1>
 <h2 style="text-align:center;">Our Animals from the @Model.Animals[0][3] species</h2>
 <h4 class="Rules">Heres a preview of all out individual animals in our @Model.Animals[0][3] species to continue and see qualified guides for this species please press contine directly below!</h4>
-<h5 class="Rules"><a asp-controller="" asp-action="" style="color:blue;">Continue!</a></h5>
+<h5 class="Rules"><a href="@Url.Action("AvailableGuides", "Guide", new { SpeciesName = @Model.Animals[0][3] })" style="color:blue;">Continue!</a></h5>
 <!-- Page -->
 <div class="gridV4">
     @{
