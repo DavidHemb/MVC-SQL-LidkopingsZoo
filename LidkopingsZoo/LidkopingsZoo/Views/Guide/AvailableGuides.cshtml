@@ -44,8 +44,8 @@
                         @for (int i = 0; i < formattedDates.Count; i++)
                         {
                             var currentDate = formattedDates[i];
-                            var isMorningClickable = true; // För morgonen
-                            var isAfternoonClickable = true; // För eftermiddagen
+                            var isMorningClickable = true;
+                            var isAfternoonClickable = true;
 
                             // Här kan du implementera din logik baserat på din lista av besök (visits)
                             foreach (var visit in Model.bookedVisits)
@@ -64,11 +64,18 @@
                             }
 
                             <tr>
-                                <td><a>@currentDate</a></td>
+                                <td>@currentDate</td>
                                 <td>
                                     @if (isMorningClickable)
                                     {
-                                        <a href="" style="text-decoration:none">09-12</a>
+                                        @if (User.Identity.IsAuthenticated) // Kontrollera om användaren är inloggad
+                                        {
+                                            @Html.ActionLink("9-12", "CreateTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, visitTime = "Morning"})
+                                        }
+                                        else
+                                        {
+                                            <a href="/Identity/Account/Register">09-12</a> <!-- Länk till registreringskontosidan om inte inloggad -->
+                                        }
                                     }
                                     else
                                     {
@@ -78,7 +85,14 @@
                                 <td>
                                     @if (isAfternoonClickable)
                                     {
-                                        <a href="" style="text-decoration:none">13-16</a>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            @Html.ActionLink("13-16", "BookTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, visitTime = "Afternoon" }, new { @class = "available-link" })
+                                        }
+                                        else
+                                        {
+                                            <a href="/Account/Register">13-16</a>
+                                        }
                                     }
                                     else
                                     {

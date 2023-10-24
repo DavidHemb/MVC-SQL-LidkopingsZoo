@@ -79,5 +79,9 @@ namespace LidkopingsZoo.Controllers
             };
             return View(toursViewModel);
         }
+        public async Task<IActionResult> CreateTour(int guideId, string visitDay, string visitTime)
+        {
+            return View();
+        }
     }
 }
