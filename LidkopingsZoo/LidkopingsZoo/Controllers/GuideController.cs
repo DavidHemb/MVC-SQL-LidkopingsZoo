@@ -28,44 +28,10 @@ namespace LidkopingsZoo.Controllers
             return View();
         }
 
-        //public async Task<IActionResult> AvailableGuides(string SpeciesName)
-        //{
-        //    var AnimalIdList = await _tourServices.GetAllAnimalIds();
-        //    List<List<string>> AnimalList = new List<List<string>>();
-        //    try
-        //    {
-        //        foreach (var Animal in AnimalIdList)
-        //        {
 
-        //            AnimalList = await _tourServices.GetAllAnimals();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-
-        //    var viewModel = new GuideAnimalsVievModel()
-        //    {
-
-        //    };
-
-        //    return View("~/views/guide/availableguides.cshtml", viewModel);
-        //}
-
-        public async Task<IActionResult> AvailableGuides(string SpeciesName)
+        public async Task<IActionResult> GuideTours(int guideId)
         {
-            List<Guide> guides = await _guideServices.GetGuidesByCompetence(SpeciesName);
-            var animals = await _tourServices.GetAllAnimalsBySpeciesName(SpeciesName);
-            var bookedVisits = await _guideServices.GetBookedVisits();
-            var viewModel = new GuideAnimalsVievModel()
-            {
-                animals = animals,
-                guides = guides,
-                bookedVisits = bookedVisits
-            };
 
-            return View("~/views/guide/availableguides.cshtml", viewModel);
         }
     }
 }

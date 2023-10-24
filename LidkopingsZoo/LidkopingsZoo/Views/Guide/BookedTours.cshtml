@@ -1,7 +1,41 @@
-﻿
+﻿@model LidkopingsZoo.Models.ViewModels.ToursViewModel
+
+<partial name="ProfileNavBar" />
+<br />
+<h2>Comments</h2>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Animals</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Number Of People</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var comment in Model.ReviewComment)
+        {
+            <tr>
+                <td style="word-wrap: break-word">@comment.Text</td>
+                <td>@comment.Created</td>
+                <td>
+                </td>
+                <td>
+                    <form method="post" asp-controller="Comment" asp-action="Delete">
+                        <button type="submit" class="btn btn-primary" name="commentId" value="@comment.Id">Cancel Tour</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="get" asp-controller="Comment" asp-action="EditComment">
+                        <button type="submit" class="btn btn-primary" name="CommentId" value="@comment.Id">Edit Tour</button>
+                        <input type="hidden" name="redirect" value="user">
+                    </form>
+                </td>
+            </tr>
+        }
 
 
-
-
-@{
-}
+    </tbody>
+</table>

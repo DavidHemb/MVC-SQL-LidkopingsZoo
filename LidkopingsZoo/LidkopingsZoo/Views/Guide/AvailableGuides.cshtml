@@ -50,15 +50,18 @@
                             // Här kan du implementera din logik baserat på din lista av besök (visits)
                             foreach (var visit in Model.bookedVisits)
                             {
-                                if (visit.Guides.Id == guide.Id && visit.VisitDay.ToString("dd/MM") == currentDate)
+                                if (visit.Guides != null)
                                 {
-                                    if (visit.VisitTime.Contains("Morning"))
+                                    if (visit.Guides.Id == guide.Id && visit.VisitDay.ToString("dd/MM") == currentDate)
                                     {
-                                        isMorningClickable = false;
-                                    }
-                                    if (visit.VisitTime.Contains("Afternoon"))
-                                    {
-                                        isAfternoonClickable = false;
+                                        if (visit.VisitTime.Contains("Morning"))
+                                        {
+                                            isMorningClickable = false;
+                                        }
+                                        if (visit.VisitTime.Contains("Afternoon"))
+                                        {
+                                            isAfternoonClickable = false;
+                                        }
                                     }
                                 }
                             }
