@@ -4,7 +4,7 @@
     {
         //METERS
         public abstract int DivingDepth { get; set; }
-        public Water(string name, string description, int divingdepth) : base(name, description)
+        public Water(string name, string description, int age, int divingdepth) : base(name, description, age)
         {
             this.Name = name;
             this.Description = description;

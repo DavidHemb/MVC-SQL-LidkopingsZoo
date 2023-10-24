@@ -4,7 +4,7 @@
     {
         //KM/H
         public abstract int Speed { get; set; }
-        public Land(string name, string description, int speed) : base(name, description)
+        public Land(string name, string description, int age, int speed) : base(name, description, age)
         {
             this.Name = name;
             this.Description = description;

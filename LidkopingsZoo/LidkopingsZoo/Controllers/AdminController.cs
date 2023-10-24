@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using LidkopingsZoo.Services.Admin;
+using LidkopingsZoo.Services.Tours;
 using System.Data;
 using LidkopingsZoo.Models;
 using LidkopingsZoo.Models.ViewModels;
@@ -14,15 +15,26 @@ namespace LidkopingsZoo.Controllers
     {
         private readonly ILogger<AdminController> _logger;
         private readonly AdminServices _adminServices;
-        public AdminController(ILogger<AdminController> logger, AdminServices AdminServices)
+        private readonly TourServices _tourServices;
+        public AdminController(ILogger<AdminController> logger, AdminServices AdminServices, TourServices TourServices)
         {
             _logger = logger;
             _adminServices = AdminServices;
+            _tourServices = TourServices;
         }
         [Authorize(Roles = "Admin")]
-        public IActionResult AdminPanel()
+        public async Task<IActionResult> AdminPanel()
         {
-            return View();
+            List<List<string>> SpeciesList = new List<List<string>>();
+            List<List<string>> AnimalsList = new List<List<string>>();
+            SpeciesList = await _adminServices.GetAllSpeciesNameInRow();
+            AnimalsList = await _tourServices.GetAllAnimals();
+            var Viewmodel = new AdminPanelViewModel()
+            {
+                Animals = AnimalsList,
+                Species = SpeciesList,
+            };
+            return View(Viewmodel);
         }
         public async Task<IActionResult> AddAnimals()
         {
@@ -67,7 +79,7 @@ namespace LidkopingsZoo.Controllers
                         break;
 
                     case "Cow":
-                        Animal Cow = new Cow(name, desc, age, specialattribute);
+                        Animal Cow = new Cow(0, name, desc, age, specialattribute);
                         _adminServices.AddAnimal(Cow);
                         break;
                     case "Giganotosaurus":
@@ -108,19 +120,16 @@ namespace LidkopingsZoo.Controllers
             }
             try
             {
-                List<List<string>> SpeciesList = new List<List<string>>();
-                SpeciesList = await _adminServices.GetAllSpeciesNameInRow();
-
                 var animal = await _adminServices.GetAnimalById(id);
 
-                if (SpeciesList == null || animal == null)
+                if (animal == null)
                 {
                     return RedirectToAction("EditAnimals");
                 }
                 var EditViewModel = new EditAnimalsInfoViewModel()
                 {
+                    ID = id,
                     EditAnimal = animal,
-                    Species = SpeciesList,
                 };
                 return View(EditViewModel);
             }
@@ -130,11 +139,54 @@ namespace LidkopingsZoo.Controllers
             } 
         }
         [HttpPost]
-        public async Task<IActionResult> EditAnimalsMethod(string name, string disc, int age, string species)
+        public async Task<IActionResult> EditAnimalsMethod(int id, string name, string desc, int age)
         {
             try
             {
-                
+                var oldanimal = await _adminServices.GetAnimalById(id);
+                int specialattribute = 0;
+                switch (oldanimal.SpeciesName)
+                {
+                    case "Dragon":
+                        await _adminServices.Delete(oldanimal);
+                        Animal Dragon = new Dragon(name, desc, age, specialattribute);
+                        _adminServices.AddAnimal(Dragon);
+                        break;
+                    case "Goose":
+                        Animal Goose = new Goose(name, desc, age, specialattribute);
+                        _adminServices.AddAnimal(Goose);
+                        break;
+                    case "Griffin":
+                        Animal Griffin = new Griffin(name, desc, age, specialattribute);
+                        _adminServices.AddAnimal(Griffin);
+                        break;
+
+                    case "Cow":
+                        Animal Cow = new Cow(id, name, desc, age, specialattribute);
+                        await _adminServices.Edit(Cow);
+                        break;
+                    case "Giganotosaurus":
+                        Animal Giganotosaurus = new Giganotosaurus(name, desc, age, specialattribute);
+                        _adminServices.AddAnimal(Giganotosaurus);
+                        break;
+                    case "SantaClaus":
+                        Animal SantaClaus = new SantaClaus(name, desc, age, specialattribute);
+                        await _adminServices.Edit(SantaClaus);
+                        break;
+
+                    case "Kraken":
+                        Animal Kraken = new Kraken(name, desc, age, specialattribute);
+                        await _adminServices.Edit(Kraken);
+                        break;
+                    case "Orca":
+                        Animal Orca = new Orca(name, desc, age, specialattribute);
+                        await _adminServices.Edit(Orca);
+                        break;
+                    case "Penguin":
+                        Animal Penguin = new Penguin(name, desc, age, specialattribute);
+                        await _adminServices.Edit(Penguin);
+                        break;
+                }
             }
             catch (Exception ex)
             {
