@@ -70,7 +70,7 @@
                                     {
                                         @if (User.Identity.IsAuthenticated) // Kontrollera om användaren är inloggad
                                         {
-                                            @Html.ActionLink("9-12", "CreateTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, visitTime = "Morning"})
+                                            @Html.ActionLink("9-12", "BookTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, species = @Model.animals[0][3], visitTime = "Morning"})
                                         }
                                         else
                                         {
@@ -87,7 +87,7 @@
                                     {
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            @Html.ActionLink("13-16", "CreateTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, visitTime = "Afternoon" } )
+                                            @Html.ActionLink("13-16", "BookTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, species = @Model.animals[0][3], visitTime = "Afternoon" } )
                                         }
                                         else
                                         {

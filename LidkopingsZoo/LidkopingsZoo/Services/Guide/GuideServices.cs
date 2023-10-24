@@ -40,6 +40,12 @@ namespace LidkopingsZoo.Services.Guides
         {
             return  _context.Guides.ToList();
         }
+        public async Task<Guide> GetGuideById(int guideId)
+        {
+            return _context.Guides
+                .Where(g => g.Id == guideId)
+                .FirstOrDefault();
+        }
         public async Task<List<Guide>> GetGuidesByCompetence(string speciesName)
         {
             return _context.guideAnimals

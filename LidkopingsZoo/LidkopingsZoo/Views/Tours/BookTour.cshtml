@@ -1,0 +1,67 @@
+﻿<style>
+    .container {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+    }
+
+    select, input {
+        width: 100%;
+        padding: 5px;
+        margin-top: 5px;
+    }
+
+        input[readonly] {
+            background-color: #f0f0f0;
+        }
+</style>
+@model LidkopingsZoo.Models.ViewModels.ToursViewModel
+@using System.Security.Claims
+
+<!-- Title & Rules -->
+<h1 class="title">Lidköpings Zoo</h1>
+<h2 style="text-align:center;">Book Your Guided Tour. </h2>
+<div class="gridV4">
+    <div class="gridH4">
+        <div class="container">
+            <h1>Formulär</h1>
+            <form method="post" action="/Tours/CreateTour">
+
+                <label for="field1">Accompaning Guide</label>
+                <input type="text" id="field1" name="field1" value="@Model.Guide.Name" readonly>
+                <input type="hidden" name="guideId" value="@Model.Guide.Id">
+
+                <label for="field2">Your E-mail</label>
+                <input type="text" id="email" name="email" value="@User.FindFirstValue(ClaimTypes.Email)" readonly>
+                <input type="hidden" name="userId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+
+                <label for="field3">Animals To Visit</label>
+                <input type="text" id="field3" name="field3" value="@Model.species" readonly>
+                <input type="hidden" name="species" value="@Model.species">
+
+                <label for="field4">Date</label>
+                <input type="text" id="field4" name="field4" value="@Model.visitDate" readonly>
+                <input type="hidden" name="date" value="@Model.visitDate">
+
+                <label for="field5">Time</label>
+                <input type="text" id="field5" name="field5" value="@Model.visitTime" readonly>
+                <input type="hidden" name="time" value="@Model.visitTime">
+
+                <label for="dropdown">How Many Will Be Accompaning you?</label>
+                <select id="dropdown" name="number">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <input type="submit" value="Book Tour!">
+            </form>
+        </div>
+    </div>
+</div>

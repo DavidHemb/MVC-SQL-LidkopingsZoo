@@ -5,6 +5,7 @@ using LidkopingsZoo.Models.Visitation;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace LidkopingsZoo.Services.Tours
 {
@@ -14,6 +15,12 @@ namespace LidkopingsZoo.Services.Tours
         public TourServices(ApplicationDbContext context) 
         {
             _context = context;
+        }
+
+        public async Task<bool> CreateTour(Visit tour)
+        {
+            _context.Visits.Add(tour);
+            return Save();
         }
         public async Task<List<int>> GetAllAnimalIds()
         {
@@ -249,6 +256,11 @@ namespace LidkopingsZoo.Services.Tours
         {
             return await _context.Animal
                 .ToListAsync();
+        }
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0 ? true : false;
         }
     }
 }
