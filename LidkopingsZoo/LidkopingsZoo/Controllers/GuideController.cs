@@ -29,9 +29,9 @@ namespace LidkopingsZoo.Controllers
         }
 
 
-        public async Task<IActionResult> GuideTours(int guideId)
-        {
+        //public async Task<IActionResult> GuideTours(int guideId)
+        //{
 
-        }
+        //}
     }
 }
