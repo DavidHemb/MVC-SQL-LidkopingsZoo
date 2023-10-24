@@ -5,18 +5,13 @@
 <br>
 <h3>Species overview</h3>
 <form>
-    <select class="form-select" aria-label="Species" name="species" id="species-dropdown">
-
-        <option selected>Species</option>
         @{
             int i = 0;
         }
         @foreach (var Species in @Model.Species[0])
         {
-            <option value="@Model.Species[0][i]">@Model.Species[0][i]</option>
             i++;
         }
-    </select><br>
     <labal>Number of Species in park: @i</labal><br>
     @{
         i = -1;
