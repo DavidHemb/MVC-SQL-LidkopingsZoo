@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.SqlServer.Server;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LidkopingsZoo.Controllers
 {
@@ -125,6 +126,22 @@ namespace LidkopingsZoo.Controllers
             {
                 return View("ThankYou");
             }
+        }
+        [Authorize(Roles = "Admin, Guide")]
+        [HttpPost]
+        public async Task<IActionResult> DeleteTour(int tourId)
+        {
+            var tour = _tourServices.GetTourById(tourId);
+
+            if (!await _tourServices.DeleteTour(tour))
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return RedirectToAction("BookedTours", "Guide");
+            }
+
         }
     }
 }

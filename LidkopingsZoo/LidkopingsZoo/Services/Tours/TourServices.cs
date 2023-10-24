@@ -22,10 +22,19 @@ namespace LidkopingsZoo.Services.Tours
             _context.Visits.Add(tour);
             return Save();
         }
-        public async Task<List<Visit>> GetAllToursByGuideId(int guideId)
+        public async Task<bool> DeleteTour(Visit tour)
+        {
+            _context.Visits.Remove(tour);
+            return Save();
+        }
+        public List<Visit> GetAllToursByGuideId(int guideId)
         {
             return _context.Visits
                 .Where(g => g.Guides.Id == guideId).ToList();
+        }
+        public Visit GetTourById(int tourId) 
+        {
+            return _context.Visits.Where(v => v.Id == tourId).SingleOrDefault();
         }
         public async Task<List<int>> GetAllAnimalIds()
         {

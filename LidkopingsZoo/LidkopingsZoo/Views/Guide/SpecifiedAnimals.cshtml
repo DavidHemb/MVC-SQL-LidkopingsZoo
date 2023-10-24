@@ -3,9 +3,9 @@
 
 
 
-<partial name="ProfileNavBar" />
+@*<partial name="GuideNavBar" />
 <br />
-<h2>Reviews</h2>
+<h2>Animal Competence List</h2>
 <br />
 <table class="table">
     <thead>
@@ -20,22 +20,22 @@
         @foreach (var review in Model.Review)
         {
             <tr>
-                <td style="word-wrap:break-word">@review.Book.Title</td>
-                <td style="word-wrap:break-word">@review.Title</td>
-                <td>@review.Rating</td>
-                <td>@review.Created</td>
+                <td style="word-wrap:break-word"></td>
+                <td style="word-wrap:break-word"></td>
+                <td></td>
+                <td></td>
                 <td>
                     <form method="post" asp-controller="Review" asp-action="Delete">
-                        <button type="submit" class="btn btn-primary" name="reviewId" value="@review.Id">Delete</button>
+                        <button type="submit" class="btn btn-primary" name="reviewId" value="">Delete</button>
                     </form>
                 </td>
                 <td>
                     <form method="get" asp-controller="Review" asp-action="Edit">
-                        <button type="submit" class="btn btn-primary" name="reviewId" value="@review.Id">Edit</button>
+                        <button type="submit" class="btn btn-primary" name="reviewId" value="">Edit</button>
                     </form>
                 </td>
             </tr>
         }
 
     </tbody>
-</table>
+</table>*@

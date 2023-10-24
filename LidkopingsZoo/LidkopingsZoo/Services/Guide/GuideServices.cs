@@ -27,12 +27,12 @@ namespace LidkopingsZoo.Services.Guides
        .ToList();
         }
 
-        public async Task<int> GetGuideIdByName(string name)
+        public int GetGuideIdByName(string name)
         {
             return _context.Guides
-                    .Where(g => g.Name == name)
+                    .Where(g => g.Email == name)
                     .Select(a => a.Id)
-                    .FirstOrDefault(); // eller SingleOrDefault() om du förväntar dig endast en träff
+                    .SingleOrDefault(); // eller SingleOrDefault() om du förväntar dig endast en träff
 
         }
 

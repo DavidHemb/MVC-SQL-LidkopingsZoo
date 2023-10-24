@@ -28,6 +28,26 @@ namespace LidkopingsZoo.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin, Guide")]
+        public async Task<IActionResult> BookedTours()
+        {
+            // Get Logged in Guide.
+            var guideName = User.Identity.Name.ToString();
+            
+            var guideId = _guideServices.GetGuideIdByName(guideName);
+
+            // Gets Booked Tours Of Logged In Guide.
+            var tours = _tourServices.GetAllToursByGuideId(guideId);
+
+            // Viewmodel for easier distribution of properties in View.
+            var viewModel = new ToursViewModel()
+            {
+                visits = tours,
+            };
+
+            return View(viewModel);
+        }
+
         public async Task<IActionResult> AvailableGuides(string SpeciesName)
         {
             List<Guide> guides = await _guideServices.GetGuidesByCompetence(SpeciesName);

@@ -1,8 +1,12 @@
 ﻿@model LidkopingsZoo.Models.ViewModels.ToursViewModel
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<partial name="ProfileNavBar" />
+
+<partial name="GuideNavBar" />
 <br />
-<h2>Comments</h2>
+<h2>Booked Tours</h2>
 <br />
 <table class="table">
     <thead>
@@ -15,27 +19,48 @@
     </thead>
     <tbody>
 
-        @*@foreach (var comment in Model.ReviewComment)
+        @foreach (var visit in Model.visits)
         {
             <tr>
-                <td style="word-wrap: break-word">@comment.Text</td>
-                <td>@comment.Created</td>
+                <td style="word-wrap: break-word">@visit.Species</td>
+                <td>@visit.VisitDay.ToString("yyyy-MM-dd")</td>
+                @if (visit.VisitTime == "Morning")
+                {
+                    <td>9-12</td>
+                }
+                else
+                {
+                    <td>13-16</td>
+                }
+                <td>@visit.Visitors</td>
+                @*<td>@visit.Id</td>*@
                 <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmDelete-@visit.Id">Cancel Tour</button>
                 </td>
-                <td>
-                    <form method="post" asp-controller="Comment" asp-action="Delete">
-                        <button type="submit" class="btn btn-primary" name="commentId" value="@comment.Id">Cancel Tour</button>
-                    </form>
-                </td>
-                <td>
-                    <form method="get" asp-controller="Comment" asp-action="EditComment">
-                        <button type="submit" class="btn btn-primary" name="CommentId" value="@comment.Id">Edit Tour</button>
-                        <input type="hidden" name="redirect" value="user">
-                    </form>
-                </td>
+
+                <div class="modal fade" id="confirmDelete-@visit.Id" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="confirmDeleteLabel">Bekräfta borttagning</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Stäng">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Är du säker på att du vill ta bort denna tur?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Avbryt</button>
+                                <form method="post" asp-controller="Tours" asp-action="DeleteTour">
+                                    <input type="hidden" name="tourId" value="@visit.Id">
+                                    <button type="submit" class="btn btn-danger">Ja, ta bort</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </tr>
-        }*@
-
-
+        }
     </tbody>
 </table>
