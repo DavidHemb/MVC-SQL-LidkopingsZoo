@@ -87,7 +87,7 @@
                                     {
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            @Html.ActionLink("13-16", "BookTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, visitTime = "Afternoon" }, new { @class = "available-link" })
+                                            @Html.ActionLink("13-16", "CreateTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, visitTime = "Afternoon" } )
                                         }
                                         else
                                         {
