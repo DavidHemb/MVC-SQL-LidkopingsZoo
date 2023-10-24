@@ -8,7 +8,7 @@
         public int Age { get; set; }
         public int HabitatId { get; set; }
         public string SpeciesName { get; set; }
-        public Animal(string name, string description)
+        public Animal(string name, string description, int age)
         {
             this.Name = name;
             this.Description = description;

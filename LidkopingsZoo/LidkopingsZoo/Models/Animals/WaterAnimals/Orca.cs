@@ -5,7 +5,7 @@ namespace LidkopingsZoo.Models.Animals.WaterAnimals
     public class Orca : Water
     {
         public override int DivingDepth { get; set; }
-        public Orca(string name, string description, int age, int DivingDepth) : base(name, description, DivingDepth)
+        public Orca(string name, string description, int age, int DivingDepth) : base(name, description, age, DivingDepth)
         {
             this.Name = name;
             this.Description = description;

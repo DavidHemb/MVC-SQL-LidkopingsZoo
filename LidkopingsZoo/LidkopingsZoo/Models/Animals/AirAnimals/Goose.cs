@@ -5,7 +5,7 @@ namespace LidkopingsZoo.Models.Animals.AirAnimals
     public class Goose : Air
     {
         public override int MaxAltitude { get; set; }
-        public Goose(string name, string description, int age, int MaxAltitude) : base(name, description, MaxAltitude)
+        public Goose(string name, string description, int age, int MaxAltitude) : base(name, description, age, MaxAltitude)
         {
             this.Name = name;
             this.Description = description;

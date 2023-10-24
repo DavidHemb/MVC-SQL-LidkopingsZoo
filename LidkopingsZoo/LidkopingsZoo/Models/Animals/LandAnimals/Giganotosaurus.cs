@@ -5,7 +5,7 @@ namespace LidkopingsZoo.Models.Animals.LandAnimals
     public class Giganotosaurus : Land
     {
         public override int Speed { get; set; }
-        public Giganotosaurus(string name, string description, int age, int speed) : base(name, description, speed)
+        public Giganotosaurus(string name, string description, int age, int speed) : base(name, description, age, speed)
         {
             this.Name = name;
             this.Description = description;
