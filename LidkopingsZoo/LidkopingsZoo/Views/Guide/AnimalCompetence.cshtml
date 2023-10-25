@@ -1,0 +1,34 @@
+﻿@model LidkopingsZoo.Models.ViewModels.GuideAnimalsVievModel
+
+<partial name="GuideNavBar" />
+<br />
+<h2>Animal Competence List</h2>
+<br />
+
+<h3>Do You Have A New Animal Competence? You Can Add It Here</h3>
+@*ADD SPECIES DROPDOWN LIST
+    <form method="post" asp-controller="Guide" asp-action="AddAnimalCompetence">
+*@
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Animal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var animal in Model.AnimalCompetence)
+        {
+            <tr>
+                <td>@animal.SpeciesName</td>
+                <td></td>
+                <td>
+                    <form method="post" asp-controller="Guide" asp-action="DeleteAnimalCompetence">
+                        <button type="submit" class="btn btn-primary" name="reviewId" value="">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

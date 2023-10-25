@@ -47,7 +47,24 @@ namespace LidkopingsZoo.Controllers
 
             return View(viewModel);
         }
+        [Authorize(Roles = "Admin, Guide")]
+        public async Task<IActionResult> AnimalCompetence()
+        {
+            // Get Logged in Guide.
+            var guideName = User.Identity.Name.ToString();
 
+            var guideId = _guideServices.GetGuideIdByName(guideName);
+
+            // Gets AnimalCompetence Of Logged In Guide.
+            var animalCompetence = _guideServices.GetAnimalsByCompetence(guideId);
+
+            var viewModel = new GuideAnimalsVievModel()
+            {
+                AnimalCompetence = animalCompetence,
+            };
+
+            return View(viewModel);
+        }
         public async Task<IActionResult> AvailableGuides(string SpeciesName)
         {
             List<Guide> guides = await _guideServices.GetGuidesByCompetence(SpeciesName);
