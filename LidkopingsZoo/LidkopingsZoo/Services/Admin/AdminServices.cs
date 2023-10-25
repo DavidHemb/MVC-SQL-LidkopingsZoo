@@ -1,5 +1,6 @@
 ﻿using LidkopingsZoo.Data;
 using LidkopingsZoo.Models;
+using LidkopingsZoo.Models.Animals.LandAnimals;
 using Microsoft.EntityFrameworkCore;
 
 namespace LidkopingsZoo.Services.Admin
@@ -21,7 +22,7 @@ namespace LidkopingsZoo.Services.Admin
             _context.Animal.Add(animal);
             return Save();
         }
-        public async Task<bool> Edit(Animal animal)
+        public async Task<bool> Edit(Cow animal)
         {
             _context.Animal.Update(animal);
             return Save();
@@ -31,9 +32,59 @@ namespace LidkopingsZoo.Services.Admin
             _context.Animal.Remove(animal);
             return Save();
         }
-        public async Task<Animal> GetAnimalById(int id)
+        public async Task<Animal> GetAnimalByIdA(int id)
         {
-            return _context.Animal.Where(b => b.Id == id).FirstOrDefault();
+            var animal = _context.Animal
+                .Where(b => b != null)
+                .FirstOrDefault();
+
+            //var desc = _context.Animal
+            //    .Where(b => b.Id == id)
+            //    .Select(b => b.Description)
+            //    .FirstOrDefault();
+
+            //var age = _context.Animal
+            //    .Where(b => b.Id == id)
+            //    .Select(b => b.Age)
+            //    .FirstOrDefault();
+            //var species = _context.Animal
+            //    .Where(b => b.Id == id)
+            //    .Select(b => b.SpeciesName)
+            //    .FirstOrDefault();
+
+            //Animal animal = new Animal(name, desc, age);
+            return animal;
+        }
+        public async Task<List<string>> GetAnimalById(int id)
+        {
+
+            var name = _context.Animal
+                .Where(b => b.Id == id)
+                .Select(b => b.Name)
+                .FirstOrDefault();
+
+            var desc = _context.Animal
+                .Where(b => b.Id == id)
+                .Select(b => b.Description)
+                .FirstOrDefault();
+
+            var age = _context.Animal
+                .Where(b => b.Id == id)
+                .Select(b => b.Age)
+                .FirstOrDefault();
+            var species = _context.Animal
+                .Where(b => b.Id == id)
+                .Select(b => b.SpeciesName)
+                .FirstOrDefault();
+
+            List<string> FullList = new List<string>
+            {
+                name,
+                desc,
+                age.ToString(),
+                species
+            };
+            return FullList;
         }
         public async Task<List<List<string>>> GetAllSpeciesNameInRow()
         {

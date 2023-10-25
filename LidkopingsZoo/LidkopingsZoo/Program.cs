@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
+//David Hemberg && Robin Rohman
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

@@ -143,9 +143,10 @@ namespace LidkopingsZoo.Controllers
         {
             try
             {
-                var oldanimal = await _adminServices.GetAnimalById(id);
+                var oldanimal = await _adminServices.GetAnimalByIdA(id);
+                //GET ANIMAL SPECIES BY ID
                 int specialattribute = 0;
-                switch (oldanimal.SpeciesName)
+                switch ("")
                 {
                     case "Dragon":
                         await _adminServices.Delete(oldanimal);
@@ -162,7 +163,7 @@ namespace LidkopingsZoo.Controllers
                         break;
 
                     case "Cow":
-                        Animal Cow = new Cow(id, name, desc, age, specialattribute);
+                        Cow Cow = new Cow(id, name, desc, age, specialattribute);
                         await _adminServices.Edit(Cow);
                         break;
                     case "Giganotosaurus":
@@ -171,20 +172,20 @@ namespace LidkopingsZoo.Controllers
                         break;
                     case "SantaClaus":
                         Animal SantaClaus = new SantaClaus(name, desc, age, specialattribute);
-                        await _adminServices.Edit(SantaClaus);
+                        
                         break;
 
                     case "Kraken":
                         Animal Kraken = new Kraken(name, desc, age, specialattribute);
-                        await _adminServices.Edit(Kraken);
+                        
                         break;
                     case "Orca":
                         Animal Orca = new Orca(name, desc, age, specialattribute);
-                        await _adminServices.Edit(Orca);
+                        
                         break;
                     case "Penguin":
                         Animal Penguin = new Penguin(name, desc, age, specialattribute);
-                        await _adminServices.Edit(Penguin);
+                        
                         break;
                 }
             }
@@ -198,7 +199,7 @@ namespace LidkopingsZoo.Controllers
         {
             try
             {
-                var animal = await _adminServices.GetAnimalById(id);
+                var animal = await _adminServices.GetAnimalByIdA(id);
                 await _adminServices.Delete(animal);
             }
             catch(Exception ex)
