@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using LidkopingsZoo.Services.Guides;
 using LidkopingsZoo.Models;
 using LidkopingsZoo.Services.Tours;
+using LidkopingsZoo.Models.Animals.AirAnimals;
 
 namespace LidkopingsZoo.Controllers
 {
@@ -55,8 +56,11 @@ namespace LidkopingsZoo.Controllers
 
             var guideId = _guideServices.GetGuideIdByName(guideName);
 
+            int i = 1;
+
             // Gets AnimalCompetence Of Logged In Guide.
-            var animalCompetence = _guideServices.GetAnimalsByCompetence(guideId);
+            var animalCompetence = _guideServices.GetAnimalsByCompetence(i);
+
 
             var viewModel = new GuideAnimalsVievModel()
             {

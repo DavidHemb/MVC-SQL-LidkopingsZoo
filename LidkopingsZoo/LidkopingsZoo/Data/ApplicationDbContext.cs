@@ -33,23 +33,29 @@ namespace LidkopingsZoo.Data
             modelBuilder.Entity<GuideAnimal>()
                 .HasKey(ba => new { ba.AnimalId, ba.GuideId });
 
-            modelBuilder.Entity<Air>()
-                .HasDiscriminator<string>("AirAnimal")?
+            //modelBuilder.Entity<Air>()
+            //    .HasDiscriminator<string>("AirAnimal")?
+            //    .HasValue<Dragon>("Dragon")
+            //    .HasValue<Goose>("Goose")
+            //    .HasValue<Griffin>("Griffin");
+
+            //modelBuilder.Entity<Land>()
+            //    .HasDiscriminator<string>("LandAnimal")?
+            //    .HasValue<Cow>("Cow")
+            //    .HasValue<Giganotosaurus>("Giganotosaurus")
+            //    .HasValue<SantaClaus>("SantaClaus");
+
+            modelBuilder.Entity<Habitat>()
+                .HasDiscriminator<string>("AnimalName")?
+                .HasValue<Kraken>("Kraken")
+                .HasValue<Orca>("Orca")
+                .HasValue<Penguin>("Penguin")
+                .HasValue<Cow>("Cow")
+                .HasValue<Giganotosaurus>("Giganotosaurus")
+                .HasValue<SantaClaus>("SantaClaus")
                 .HasValue<Dragon>("Dragon")
                 .HasValue<Goose>("Goose")
                 .HasValue<Griffin>("Griffin");
-
-            modelBuilder.Entity<Land>()
-                .HasDiscriminator<string>("LandAnimal")?
-                .HasValue<Cow>("Cow")
-                .HasValue<Giganotosaurus>("Giganotosaurus")
-                .HasValue<SantaClaus>("SantaClaus");
-
-            modelBuilder.Entity<Water>()
-                .HasDiscriminator<string>("WaterAnimal")?
-                .HasValue<Kraken>("Kraken")
-                .HasValue<Orca>("Orca")
-                .HasValue<Penguin>("Penguin");
 
             base.OnModelCreating(modelBuilder);
         }
