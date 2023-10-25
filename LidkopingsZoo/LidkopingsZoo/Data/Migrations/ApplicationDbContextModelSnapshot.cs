@@ -54,7 +54,7 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Animal");
+                    b.ToTable("Animal", (string)null);
 
                     b.HasDiscriminator<string>("AnimalName").HasValue("Animal");
 
@@ -74,7 +74,7 @@ namespace LidkopingsZoo.Data.Migrations
                     b.HasIndex("GuideId")
                         .IsUnique();
 
-                    b.ToTable("guideAnimals");
+                    b.ToTable("guideAnimals", (string)null);
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Guide", b =>
@@ -95,7 +95,7 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Guides");
+                    b.ToTable("Guides", (string)null);
                 });
 
             modelBuilder.Entity("LidkopingsZoo.Models.Visitation.Visit", b =>
@@ -131,7 +131,7 @@ namespace LidkopingsZoo.Data.Migrations
 
                     b.HasIndex("GuidesId");
 
-                    b.ToTable("Visits");
+                    b.ToTable("Visits", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

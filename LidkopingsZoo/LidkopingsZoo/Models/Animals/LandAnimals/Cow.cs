@@ -5,7 +5,7 @@ namespace LidkopingsZoo.Models.Animals.LandAnimals
     public class Cow : Land
     {
         public override int Speed { get; set; }
-        public Cow(int id, string name, string description, int age, int speed) : base(name, description, age, speed)
+        public Cow(string name, string description, int age, int speed) : base(name, description, age, speed)
         {
             this.Name = name;
             this.Description = description;

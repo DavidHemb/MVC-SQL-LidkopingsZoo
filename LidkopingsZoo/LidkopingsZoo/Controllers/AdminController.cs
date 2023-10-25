@@ -79,7 +79,7 @@ namespace LidkopingsZoo.Controllers
                         break;
 
                     case "Cow":
-                        Animal Cow = new Cow(0, name, desc, age, specialattribute);
+                        Animal Cow = new Cow(name, desc, age, specialattribute);
                         _adminServices.AddAnimal(Cow);
                         break;
                     case "Giganotosaurus":
@@ -120,7 +120,7 @@ namespace LidkopingsZoo.Controllers
             }
             try
             {
-                var animal = await _adminServices.GetAnimalById(id);
+                var animal = await _adminServices.GetAnimalByIdA(id);
 
                 if (animal == null)
                 {
@@ -146,46 +146,53 @@ namespace LidkopingsZoo.Controllers
                 var oldanimal = await _adminServices.GetAnimalByIdA(id);
                 //GET ANIMAL SPECIES BY ID
                 int specialattribute = 0;
-                switch ("")
+                switch (oldanimal.SpeciesName)
                 {
                     case "Dragon":
-                        await _adminServices.Delete(oldanimal);
+                        _adminServices.Delete(oldanimal);
                         Animal Dragon = new Dragon(name, desc, age, specialattribute);
                         _adminServices.AddAnimal(Dragon);
                         break;
                     case "Goose":
+                        _adminServices.Delete(oldanimal);
                         Animal Goose = new Goose(name, desc, age, specialattribute);
                         _adminServices.AddAnimal(Goose);
                         break;
                     case "Griffin":
+                        await RemoveAnimalsMethod(oldanimal.Id);
                         Animal Griffin = new Griffin(name, desc, age, specialattribute);
                         _adminServices.AddAnimal(Griffin);
                         break;
-
                     case "Cow":
-                        Cow Cow = new Cow(id, name, desc, age, specialattribute);
-                        await _adminServices.Edit(Cow);
+                        _adminServices.Delete(oldanimal);
+                        Animal Cow = new Cow(name, desc, age, specialattribute);
+                        Cow.Id = id;
+                        _adminServices.AddAnimal(Cow);
                         break;
                     case "Giganotosaurus":
+                        _adminServices.Delete(oldanimal);
                         Animal Giganotosaurus = new Giganotosaurus(name, desc, age, specialattribute);
                         _adminServices.AddAnimal(Giganotosaurus);
                         break;
                     case "SantaClaus":
+                        _adminServices.Delete(oldanimal);
                         Animal SantaClaus = new SantaClaus(name, desc, age, specialattribute);
-                        
+                        _adminServices.AddAnimal(SantaClaus);
                         break;
-
                     case "Kraken":
+                        _adminServices.Delete(oldanimal);
                         Animal Kraken = new Kraken(name, desc, age, specialattribute);
-                        
+                        _adminServices.AddAnimal(Kraken);
                         break;
                     case "Orca":
+                        _adminServices.Delete(oldanimal);
                         Animal Orca = new Orca(name, desc, age, specialattribute);
-                        
+                        _adminServices.AddAnimal(Orca);
                         break;
                     case "Penguin":
+                        _adminServices.Delete(oldanimal);
                         Animal Penguin = new Penguin(name, desc, age, specialattribute);
-                        
+                        _adminServices.AddAnimal(Penguin);
                         break;
                 }
             }
@@ -200,13 +207,17 @@ namespace LidkopingsZoo.Controllers
             try
             {
                 var animal = await _adminServices.GetAnimalByIdA(id);
-                await _adminServices.Delete(animal);
+                var guideAnimals = await _adminServices.GetGuideAnimalIdA(animal.Id);
+                _adminServices.DeleteGuideIds(guideAnimals);
+                _adminServices.Delete(animal);
+                return RedirectToAction("AdminPanel");
             }
-            catch(Exception ex)
+            catch
             {
-                throw new Exception(ex.Message);
+                var animal = await _adminServices.GetAnimalByIdA(id);
+                _adminServices.Delete(animal);
+                return RedirectToAction("AdminPanel");
             }
-            return RedirectToAction("AdminPanel");
         }
     }
 }

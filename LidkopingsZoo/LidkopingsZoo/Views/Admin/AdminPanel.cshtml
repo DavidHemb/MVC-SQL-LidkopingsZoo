@@ -20,39 +20,5 @@
     }
     <br>
     <h3>Animal overview</h3>
-    @foreach (var type in @Model.Animals[t])
-        {
-            int j = 0;
-            int s = 4;
-            @foreach (var animal in Model.Animals[t][j])
-            {
-                try
-                {
-                    if (Model.Animals[t][j] != null)
-                    {
-                        <ul>
-                            <li>
-                                <p>@Model.Animals[t][j]</p>
-                                <p>(@Model.Animals[t][s])</p>
-                            </li>
-                        </ul>
-                        j = j + 5;
-                        s = s + 5;
-                        counter++;
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                }
-            }
-            t++;
-            if (t == 3)
-            {
-                break;
-            }
-        }
-    <labal>Number of Animals in park: @counter</labal><br>
-
     
 </form>

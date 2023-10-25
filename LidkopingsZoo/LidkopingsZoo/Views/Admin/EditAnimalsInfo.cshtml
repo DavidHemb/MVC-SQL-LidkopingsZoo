@@ -5,13 +5,13 @@
     <input type="hidden" id=" id" name="id" value="@Model.ID"/>
 
     <label for="name">Name</label><br>
-    <input type="text" id="name" name="name" placeholder="@Model.EditAnimal[0]" required><br>
+    <input type="text" id="name" name="name" placeholder="@Model.EditAnimal.Name" required><br>
 
     <label for="desc">Description</label><br>
-    <input type="text" id="desc" name="desc" placeholder="@Model.EditAnimal.[1]" required><br>
+    <input type="text" id="desc" name="desc" placeholder="@Model.EditAnimal.Description" required><br>
 
     <label for="age">Age</label><br>
-    <input type="number" id="age" name="age" placeholder="@Model.EditAnimal.[2]" required><br>
+    <input type="number" id="age" name="age" placeholder="@Model.EditAnimal.Age" required><br>
 
     <button type="submit" class="btn btn-primary">Edit Animal</button>
 </form>

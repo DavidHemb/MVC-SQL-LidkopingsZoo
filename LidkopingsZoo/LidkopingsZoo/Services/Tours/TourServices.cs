@@ -268,8 +268,7 @@ namespace LidkopingsZoo.Services.Tours
         }
         public async Task<List<Animal>> GetAllAnimalss()
         {
-            return await _context.Animal
-                .ToListAsync();
+            return  _context.Animal.ToList();
         }
         public bool Save()
         {

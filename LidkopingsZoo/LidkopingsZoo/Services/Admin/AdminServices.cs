@@ -22,69 +22,35 @@ namespace LidkopingsZoo.Services.Admin
             _context.Animal.Add(animal);
             return Save();
         }
-        public async Task<bool> Edit(Cow animal)
+        public async Task<bool> Edit(Animal animal)
         {
             _context.Animal.Update(animal);
             return Save();
         }
-        public async Task<bool> Delete(Animal animal)
+        public bool Delete(Animal animal)
         {
             _context.Animal.Remove(animal);
+            return Save();
+        }
+        public bool DeleteGuideIds(GuideAnimal guideAnimal)
+        {
+            _context.guideAnimals.Remove(guideAnimal);
             return Save();
         }
         public async Task<Animal> GetAnimalByIdA(int id)
         {
             var animal = _context.Animal
-                .Where(b => b != null)
+                .Where(b => b.Id == id)
                 .FirstOrDefault();
 
-            //var desc = _context.Animal
-            //    .Where(b => b.Id == id)
-            //    .Select(b => b.Description)
-            //    .FirstOrDefault();
-
-            //var age = _context.Animal
-            //    .Where(b => b.Id == id)
-            //    .Select(b => b.Age)
-            //    .FirstOrDefault();
-            //var species = _context.Animal
-            //    .Where(b => b.Id == id)
-            //    .Select(b => b.SpeciesName)
-            //    .FirstOrDefault();
-
-            //Animal animal = new Animal(name, desc, age);
             return animal;
         }
-        public async Task<List<string>> GetAnimalById(int id)
+        public async Task<GuideAnimal> GetGuideAnimalIdA(int id)
         {
-
-            var name = _context.Animal
-                .Where(b => b.Id == id)
-                .Select(b => b.Name)
+            var guideAnimal = _context.guideAnimals
+                .Where(a => a.AnimalId == id)
                 .FirstOrDefault();
-
-            var desc = _context.Animal
-                .Where(b => b.Id == id)
-                .Select(b => b.Description)
-                .FirstOrDefault();
-
-            var age = _context.Animal
-                .Where(b => b.Id == id)
-                .Select(b => b.Age)
-                .FirstOrDefault();
-            var species = _context.Animal
-                .Where(b => b.Id == id)
-                .Select(b => b.SpeciesName)
-                .FirstOrDefault();
-
-            List<string> FullList = new List<string>
-            {
-                name,
-                desc,
-                age.ToString(),
-                species
-            };
-            return FullList;
+            return guideAnimal;
         }
         public async Task<List<List<string>>> GetAllSpeciesNameInRow()
         {
