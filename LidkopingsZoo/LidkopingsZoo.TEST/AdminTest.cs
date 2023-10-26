@@ -71,21 +71,7 @@ namespace LidkopingsZoo.TEST
         {
             Animal Penguin = new Penguin("TestName", "TestDesciption", 10, 0);
         }
-
-        [TestMethod]
-        public void RolesCreationTest()
-        {
-            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-            var roles = new[] { "Admin", "Guide", "Member" };
-            foreach (var role in roles)
-            {
-                if (!await roleManager.RoleExistsAsync(role))
-                {
-                    await roleManager.CreateAsync(new IdentityRole(role));
-                }
-            }
-
-        }
+        //[TestMethod]
         //public void AddAnimalTest()
         //{
         //    var dbContext = GetInMemoryDbContext();
