@@ -80,5 +80,14 @@ namespace LidkopingsZoo.TEST
         //    Animal Penguin = new Penguin("TestName", "TestDesciption", 10, 0);
         //    adminServices.AddAnimal(Penguin);
         //}
+
+        // Hjälpmetod för att skapa en in-memory DbContext
+        private ApplicationDbContext GetInMemoryDbContext()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "InMemoryDatabase")
+                .Options;
+            return new ApplicationDbContext(options);
+        }
     }
 }

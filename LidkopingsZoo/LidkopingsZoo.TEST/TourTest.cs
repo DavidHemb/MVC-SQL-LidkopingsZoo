@@ -24,12 +24,12 @@ namespace LidkopingsZoo.TEST
             dbContext = GetInMemoryDbContext();
         }
 
-        //[TestCleanup]
-        //public void Cleanup()
-        //{
-        //    // Dispose of dbContext after each test
-        //    dbContext.Dispose();
-        //}
+        [TestCleanup]
+        public void Cleanup()
+        {
+            // Dispose of dbContext after each test
+            dbContext.Dispose();
+        }
 
         [TestMethod]
         public async Task CreateTour_Should_Add_Tour_To_Context()
