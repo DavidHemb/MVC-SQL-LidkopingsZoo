@@ -2,6 +2,9 @@ ADMIN
 Username: Admin@mail.com
 Password: Admin1!
 
+ADMIN
+Username: Guidotheguide@mail.com
+Password: Guide1!
 
 
 Db init query

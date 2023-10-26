@@ -10,9 +10,13 @@
             this.Description = description;
             this.Speed = speed;
         }
-        public void IRun()
+        public static object IMove()
         {
-            Console.WriteLine("I run");
+            return "I run";
+        }
+        public static object ISound()
+        {
+            return "Rarrr";
         }
     }
 }

@@ -10,9 +10,13 @@
             this.Description = description;
             this.DivingDepth = divingdepth;
         }
-        public void ISwim()
+        public static object IMove()
         {
-            Console.WriteLine("I swim");
+            return "I swim";
+        }
+        public static object ISound()
+        {
+            return "Blubb blubb";
         }
     }
 }

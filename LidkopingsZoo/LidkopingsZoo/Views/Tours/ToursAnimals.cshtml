@@ -1,4 +1,5 @@
-﻿<link rel="stylesheet" href="~/css/tours.css" asp-append-version="true" />
+﻿@using LidkopingsZoo.Models.Elements
+<link rel="stylesheet" href="~/css/tours.css" asp-append-version="true" />
 @model LidkopingsZoo.Models.ViewModels.ToursViewModel
 <!-- Title & Rules -->
 <h1 class="title">Lidköpings Zoo</h1>
@@ -49,6 +50,8 @@
                                     <h6 class="gridwindowstext">Age: @Model.Animals[t][a]</h6>
                                     <h6 class="gridwindowstext">Description: @Model.Animals[t][d]</h6>
                                     <p class="gridwindowstext">This animal resides in the air habitat</p>
+                                    <p class="gridwindowstext">@Air.IMove()</p>
+                                    <p class="gridwindowstext">@Air.ISound()</p>
                                 </div>
                                 <div class="gridwindowsimg">
                                     <img class="imageimg" src="~/assets/Air.jpg" alt="" style="justify-content: center; align-self: center;">
@@ -67,6 +70,8 @@
                                     <h6 class="gridwindowstext">Age: @Model.Animals[t][a]</h6>
                                     <h6 class="gridwindowstext">Description: @Model.Animals[t][d]</h6>
                                     <p class="gridwindowstext">This animal resides in the land habitat</p>
+                                    <p class="gridwindowstext">@Land.IMove()</p>
+                                    <p class="gridwindowstext">@Land.ISound()</p>
                                 </div>
                                 <div class="gridwindowsimg">
                                     <img class="imageimg" src="~/assets/Earth.jpg" alt="" style="justify-content: center; align-self: center;">
@@ -86,6 +91,8 @@
                                     <h6 class="gridwindowstext">Description: @Model.Animals[t][d]</h6>
                                     <p class="gridwindowstext">This animal resides in the water habitat</p>
                                     <p class="gridwindowstext"><a asp-controller="Tours" asp-action="" style="color:blue;">Book here now!</a></p>
+                                    <p class="gridwindowstext">@Water.IMove()</p>
+                                    <p class="gridwindowstext">@Water.ISound()</p>
                                 </div>
                                 <div class="gridwindowsimg">
                                     <img class="imageimg" src="~/assets/Water.jpg" alt="" style="justify-content: center; align-self: center;">

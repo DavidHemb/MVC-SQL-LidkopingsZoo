@@ -1,4 +1,4 @@
-namespace LidkopingsZoo.Tests
+namespace LidkopingsZoo.TEST
 {
     [TestClass]
     public class UnitTest1

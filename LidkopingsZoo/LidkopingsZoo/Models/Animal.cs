@@ -13,9 +13,5 @@
             this.Name = name;
             this.Description = description;
         }
-        public void Move()
-        {
-
-        }
     }
 }

@@ -10,9 +10,13 @@
             Name = name;
             Description = description;
         }
-        public void IFly()
+        public static object IMove()
         {
-            Console.WriteLine("I fly");
+            return "I fly";
+        }
+        public static object ISound()
+        {
+            return "Swishh swishh";
         }
     }
 }
