@@ -21,18 +21,20 @@ namespace LidkopingsZoo.Services.Guides
         public List<Animal> GetAnimalsByCompetence(int guideID)
         {
             return _context.guideAnimals
-       .Where(g => g.GuideId == guideID)
-       .Include(a => a.Animal) // Här använder vi Include för att hämta hela Animal-entiteten.
-       .Select(a => a.Animal)
-       .ToList();
+                .Where(g => g.GuideId == guideID)
+                .Include(a => a.Animal)
+                .Select(a => a.Animal)
+                .GroupBy(a => a.SpeciesName)
+                .Select(group => group.First())
+                .ToList();
         }
 
         public int GetGuideIdByName(string name)
         {
             return _context.Guides
                     .Where(g => g.Email == name)
-                    .Select(a => a.Id)
-                    .SingleOrDefault(); // eller SingleOrDefault() om du förväntar dig endast en träff
+                    .Select(g => g.Id)
+                    .FirstOrDefault();
 
         }
 

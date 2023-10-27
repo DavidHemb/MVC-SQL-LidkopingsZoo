@@ -18,6 +18,8 @@
 
 <!-- Title & Rules -->
 <h1 class="title">Lidköpings Zoo</h1>
+@if (Model.guides.Count > 1)
+{
 <h2 style="text-align:center;">Available Guides for @Model.animals[0][3]s </h2>
 <div class="gridV4">
     @foreach (var guide in Model.guides)
@@ -73,7 +75,14 @@
                                     {
                                         @if (User.Identity.IsAuthenticated) // Kontrollera om användaren är inloggad
                                         {
-                                            @Html.ActionLink("9-12", "BookTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, species = @Model.animals[0][3], visitTime = "Morning"})
+                                                if (User.IsInRole("Guide"))
+                                                {
+                                                    @Html.ActionLink("9-12", "SillyGuide", "Guide")
+                                                }
+                                                else 
+                                                {
+                                                    @Html.ActionLink("9-12", "BookTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, species = @Model.animals[0][3], visitTime = "Morning"})
+                                                }
                                         }
                                         else
                                         {
@@ -90,8 +99,15 @@
                                     {
                                         @if (User.Identity.IsAuthenticated)
                                         {
-                                            @Html.ActionLink("13-16", "BookTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, species = @Model.animals[0][3], visitTime = "Afternoon" } )
-                                        }
+                                                if (User.IsInRole("Guide"))
+                                                {
+                                                    @Html.ActionLink("13-16", "SillyGuide", "Guide")
+                                                }
+                                                else
+                                                {
+                                                    @Html.ActionLink("13-16", "BookTour", "Tours", new { guideId = guide.Id, visitDay = currentDate, species = @Model.animals[0][3], visitTime = "Afternoon" } )
+                                                }
+                                            }
                                         else
                                         {
                                             <a href="/Identity/Account/Login">13-16</a>
@@ -110,3 +126,8 @@
         </div>
     }
 </div>
+} 
+else 
+{
+    <h3 style="text-align:center;">No Guides Available For This Species!</h3>
+}

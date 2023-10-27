@@ -10,7 +10,7 @@ namespace LidkopingsZoo.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql("INSERT INTO Guides (name)\r\nVALUES ('Guido The Guide')\r\n\r\nINSERT INTO Guides (name)\r\nVALUES ('Ace Ventura')\r\n\r\nINSERT INTO Guides (name)\r\nVALUES ('Crocodile Dundee')");
+            migrationBuilder.Sql("INSERT INTO Guides (name, Email)\r\nVALUES ('Guido The Guide', 'GuidoTheGuide@mail.com')\r\n\r\nINSERT INTO Guides (name, Email)\r\nVALUES ('Ace Ventura', 'AceVentura@mail.com')\r\n\r\nINSERT INTO Guides (name, Email)\r\nVALUES ('Crocodile Dundee', 'CrocodileDundee@mail.com')");
         }
 
         /// <inheritdoc />

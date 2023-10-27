@@ -56,10 +56,8 @@ namespace LidkopingsZoo.Controllers
 
             var guideId = _guideServices.GetGuideIdByName(guideName);
 
-            int i = 1;
-
             // Gets AnimalCompetence Of Logged In Guide.
-            var animalCompetence = _guideServices.GetAnimalsByCompetence(i);
+            var animalCompetence = _guideServices.GetAnimalsByCompetence(guideId);
 
 
             var viewModel = new GuideAnimalsVievModel()
@@ -82,6 +80,11 @@ namespace LidkopingsZoo.Controllers
             };
 
             return View("~/views/guide/availableguides.cshtml", viewModel);
+        }
+
+        public async Task<IActionResult> SillyGuide()
+        {
+            return View();
         }
     }
 }

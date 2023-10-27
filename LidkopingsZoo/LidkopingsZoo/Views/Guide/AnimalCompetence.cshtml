@@ -5,7 +5,7 @@
 <h2>Animal Competence List</h2>
 <br />
 
-<h3>Do You Have A New Animal Competence? You Can Add It Here</h3>
+@*<h3>Do You Have A New Animal Competence? You Can Add It Here</h3>*@
 @*ADD SPECIES DROPDOWN LIST
     <form method="post" asp-controller="Guide" asp-action="AddAnimalCompetence">
 *@
@@ -20,13 +20,14 @@
         @foreach (var animal in Model.AnimalCompetence)
         {
             <tr>
-                <td>@animal.SpeciesName</td>
+                    <td>@animal.SpeciesName</td>
+
                 <td></td>
-                <td>
+                @*                <td>
                     <form method="post" asp-controller="Guide" asp-action="DeleteAnimalCompetence">
                         <button type="submit" class="btn btn-primary" name="Delete" value="">Delete</button>
                     </form>
-                </td>
+                </td>*@
             </tr>
         }
 
