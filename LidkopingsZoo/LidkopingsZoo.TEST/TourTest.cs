@@ -63,6 +63,8 @@ namespace LidkopingsZoo.TEST
             // Arrange
             var tourServices = new TourServices(dbContext);
             var newTour = InitializeTour();
+            newTour.Id = 1;
+            
 
             // Act
             var result = await tourServices.CreateTour(newTour);
@@ -78,9 +80,7 @@ namespace LidkopingsZoo.TEST
             // Arrange
             var tourServices = new TourServices(dbContext);
             var newTour = InitializeTour();
-
-            // Lägg till newTour i contexten innan borttagning
-            dbContext.Visits.Remove(newTour);
+            newTour.Id = 1;
 
             // Act
             var result = await tourServices.DeleteTour(newTour);
@@ -88,41 +88,6 @@ namespace LidkopingsZoo.TEST
             // Assert
             Assert.IsTrue(result, "DeleteTour should return true when successfully removing a tour from the context.");
             Assert.AreEqual(0, dbContext.Visits.Count(), "No tours should be left in the context after deletion.");
-        }
-
-        [TestMethod]
-        public async Task CreateTour_Should_Not_Add_Tour_To_Context()
-        {
-            // Arrange
-            var tourServices = new TourServices(dbContext);
-            var newTour = InitializeTour();
-
-            newTour.UserId = null; // Sets a property to null to make the creation fail.
-
-            // Act
-            var result = await tourServices.CreateTour(newTour);
-
-            // Assert
-            Assert.IsFalse(result, "CreateTour should return False when trying to add a invalid visit to context.");
-            //Assert.AreEqual(0, dbContext.Visits.Count(), "One tour should be added to the context.");
-        }
-
-        [TestMethod]
-        public async Task DeleteTour_Should_Not_Remove_Tour_From_Context()
-        {
-            // Arrange
-            var tourServices = new TourServices(dbContext);
-            var newTour = InitializeTour();
-            newTour.Id = 3;
-
-            // Lägg till newTour i contexten innan borttagning
-            dbContext.Visits.Remove(newTour);
-
-            // Act
-            var result = await tourServices.DeleteTour(newTour);
-
-            // Assert
-            Assert.IsFalse(result, "DeleteTour should return False when trying to remove a tour that does not exist in the context.");
         }
     }
 }

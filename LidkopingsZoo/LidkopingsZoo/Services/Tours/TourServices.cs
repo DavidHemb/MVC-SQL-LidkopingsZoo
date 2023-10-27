@@ -3,6 +3,7 @@ using LidkopingsZoo.Models;
 using LidkopingsZoo.Models.Elements;
 using LidkopingsZoo.Models.Visitation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -19,14 +20,29 @@ namespace LidkopingsZoo.Services.Tours
 
         public async Task<bool> CreateTour(Visit tour)
         {
+            if (tour.UserId.IsNullOrEmpty())
+            {
+                return false;
+            }
             _context.Visits.Add(tour);
             return Save();
         }
         public async Task<bool> DeleteTour(Visit tour)
         {
-            _context.Visits.Remove(tour);
-            return Save();
+            //if (DoesTourExist(tour))
+            //{
+                _context.Visits.Remove(tour);
+                return Save();
+            //}
+            //else return false;
         }
+
+        //public bool DoesTourExist(Visit tour) 
+        //{
+        //    var existingTour = _context.Visits.FirstOrDefault(v => v.Id == tour.Id);
+
+        //    return existingTour != null;
+        //}
         public List<Visit> GetAllToursByGuideId(int guideId)
         {
             return _context.Visits
