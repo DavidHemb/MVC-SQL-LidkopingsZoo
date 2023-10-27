@@ -36,10 +36,6 @@ namespace LidkopingsZoo.Services.Guides
 
         }
 
-        public async Task<List<Guide>> GetAllGuides()
-        {
-            return  _context.Guides.ToList();
-        }
         public async Task<Guide> GetGuideById(int guideId)
         {
             return _context.Guides
@@ -53,11 +49,6 @@ namespace LidkopingsZoo.Services.Guides
                 .Select(ga => ga.Guide)
                 .Distinct()
                 .ToList();
-        }
-        public async Task<List<Visit>> GetBookedVisitsByGuide(int guideId)
-        {
-            return _context.Visits
-                .Where(g => g.Guides.Id == guideId).ToList();
         }
         public async Task<List<Visit>> GetBookedVisits()
         {

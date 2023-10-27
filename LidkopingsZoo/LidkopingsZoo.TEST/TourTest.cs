@@ -16,7 +16,7 @@ namespace LidkopingsZoo.TEST
     public class TourTest
     {
         private ApplicationDbContext dbContext;
-        private Visit newTour; // Declare newTour as a class-level variable
+        //Visit newTour = InitializeTour(); // Declare newTour as a class-level variable
 
         [TestInitialize]
         public void Initialize()
@@ -24,27 +24,19 @@ namespace LidkopingsZoo.TEST
             dbContext = GetInMemoryDbContext();
         }
 
-        [TestCleanup]
-        public void Cleanup()
+        // Initializes a mock tour for test purpose.
+        public static Visit InitializeTour()
         {
-            // Dispose of dbContext after each test
-            dbContext.Dispose();
-        }
-
-        [TestMethod]
-        public async Task CreateTour_Should_Add_Tour_To_Context()
-        {
-            // Arrange
-            var tourServices = new TourServices(dbContext);
-
             Guide testGuide = new Guide
             {
+                Id = 1,
                 Name = "TestGuido",
                 Email = "TestGuido@mail.com"
             };
 
-            newTour = new Visit
+            var newTour = new Visit
             {
+                Id = 1,
                 Guides = testGuide,
                 VisitDay = DateTime.Now,
                 VisitTime = "Afternoon",
@@ -52,6 +44,25 @@ namespace LidkopingsZoo.TEST
                 Visitors = 3,
                 UserId = "exampleuserid"
             };
+
+            return newTour;
+        }
+
+        // Sets up a InMemoryDatabase for testing.
+        private ApplicationDbContext GetInMemoryDbContext()
+        {
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: "InMemoryDatabase")
+                .Options;
+            return new ApplicationDbContext(options);
+        }
+
+        [TestMethod]
+        public async Task CreateTour_Should_Add_Tour_To_Context()
+        {
+            // Arrange
+            var tourServices = new TourServices(dbContext);
+            var newTour = InitializeTour();
 
             // Act
             var result = await tourServices.CreateTour(newTour);
@@ -66,6 +77,10 @@ namespace LidkopingsZoo.TEST
         {
             // Arrange
             var tourServices = new TourServices(dbContext);
+            var newTour = InitializeTour();
+
+            // Lägg till newTour i contexten innan borttagning
+            dbContext.Visits.Remove(newTour);
 
             // Act
             var result = await tourServices.DeleteTour(newTour);
@@ -75,13 +90,39 @@ namespace LidkopingsZoo.TEST
             Assert.AreEqual(0, dbContext.Visits.Count(), "No tours should be left in the context after deletion.");
         }
 
-        // Hjälpmetod för att skapa en in-memory DbContext
-        private ApplicationDbContext GetInMemoryDbContext()
+        [TestMethod]
+        public async Task CreateTour_Should_Not_Add_Tour_To_Context()
         {
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: "InMemoryDatabase")
-                .Options;
-            return new ApplicationDbContext(options);
+            // Arrange
+            var tourServices = new TourServices(dbContext);
+            var newTour = InitializeTour();
+
+            newTour.UserId = null; // Sets a property to null to make the creation fail.
+
+            // Act
+            var result = await tourServices.CreateTour(newTour);
+
+            // Assert
+            Assert.IsFalse(result, "CreateTour should return False when trying to add a invalid visit to context.");
+            //Assert.AreEqual(0, dbContext.Visits.Count(), "One tour should be added to the context.");
+        }
+
+        [TestMethod]
+        public async Task DeleteTour_Should_Not_Remove_Tour_From_Context()
+        {
+            // Arrange
+            var tourServices = new TourServices(dbContext);
+            var newTour = InitializeTour();
+            newTour.Id = 3;
+
+            // Lägg till newTour i contexten innan borttagning
+            dbContext.Visits.Remove(newTour);
+
+            // Act
+            var result = await tourServices.DeleteTour(newTour);
+
+            // Assert
+            Assert.IsFalse(result, "DeleteTour should return False when trying to remove a tour that does not exist in the context.");
         }
     }
 }
