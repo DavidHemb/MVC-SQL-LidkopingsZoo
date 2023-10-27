@@ -1,6 +1,7 @@
 ﻿using LidkopingsZoo.Data;
 using LidkopingsZoo.Models;
 using LidkopingsZoo.Models.Animals.LandAnimals;
+using LidkopingsZoo.Models.Animals.WaterAnimals;
 using Microsoft.EntityFrameworkCore;
 
 namespace LidkopingsZoo.Services.Admin

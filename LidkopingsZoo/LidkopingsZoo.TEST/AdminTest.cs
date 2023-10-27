@@ -31,6 +31,9 @@ namespace LidkopingsZoo.TEST
             return new ApplicationDbContext(options);
         }
         //Animals
+        //--------------------------------------------------------------------------------------------------
+        //ADD
+        //--------------------------------------------------------------------------------------------------
         //AIR
         [TestMethod]
         public async Task GooseCreationTest()
@@ -38,6 +41,7 @@ namespace LidkopingsZoo.TEST
             var adminServices = new AdminServices(dbContext);
             newAnimal = new Goose("Test", "Test", 10, 0)
             {
+                Id = 1,
                 Name = "Test",
                 Description = "Test",
                 Age = 10,
@@ -45,7 +49,7 @@ namespace LidkopingsZoo.TEST
             };
             var result = adminServices.AddAnimal(newAnimal);
             Assert.IsTrue(result, "AddAnimal should return true when successfull");
-            Assert.AreEqual(4, dbContext.Animal.Count(), "Animal added");
+            Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
         }
         [TestMethod]
         public async Task DragonCreationTest()
@@ -53,6 +57,7 @@ namespace LidkopingsZoo.TEST
             var adminServices = new AdminServices(dbContext);
             newAnimal = new Dragon("Test", "Test", 10, 0)
             {
+                Id = 2,
                 Name = "Test",
                 Description = "Test",
                 Age = 10,
@@ -60,15 +65,15 @@ namespace LidkopingsZoo.TEST
             };
             var result = adminServices.AddAnimal(newAnimal);
             Assert.IsTrue(result, "AddAnimal should return true when successfull");
-            Assert.AreEqual(2, dbContext.Animal.Count(), "Animal added");
+            Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
         }
-        //LAND
         [TestMethod]
         public async Task GriffinCreationTest()
         {
             var adminServices = new AdminServices(dbContext);
             newAnimal = new Griffin("Test", "Test", 10, 0)
             {
+                Id = 3,
                 Name = "Test",
                 Description = "Test",
                 Age = 10,
@@ -76,8 +81,9 @@ namespace LidkopingsZoo.TEST
             };
             var result = adminServices.AddAnimal(newAnimal);
             Assert.IsTrue(result, "AddAnimal should return true when successfull");
-            Assert.AreEqual(5, dbContext.Animal.Count(), "Animal added");
+            Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
         }
+        //--------------------------------------------------------------------------------------------------
         //LAND
         [TestMethod]
         public async Task CowCreationTest()
@@ -85,6 +91,7 @@ namespace LidkopingsZoo.TEST
             var adminServices = new AdminServices(dbContext);
             newAnimal = new Cow("Test", "Test", 10, 0)
             {
+                Id = 4,
                 Name = "Test",
                 Description = "Test",
                 Age = 10,
@@ -100,6 +107,7 @@ namespace LidkopingsZoo.TEST
             var adminServices = new AdminServices(dbContext);
             newAnimal = new Giganotosaurus("Test", "Test", 10, 0)
             {
+                Id = 5,
                 Name = "Test2",
                 Description = "Test2",
                 Age = 10,
@@ -107,7 +115,7 @@ namespace LidkopingsZoo.TEST
             };
             var result = adminServices.AddAnimal(newAnimal);
             Assert.IsTrue(result, "AddAnimal should return true when successfull");
-            Assert.AreEqual(3, dbContext.Animal.Count(), "Animal added");
+            Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
         }
         [TestMethod]
         public async Task SantaClausCreationTest()
@@ -115,6 +123,7 @@ namespace LidkopingsZoo.TEST
             var adminServices = new AdminServices(dbContext);
             newAnimal = new SantaClaus("Test", "Test", 10, 0)
             {
+                Id = 6,
                 Name = "Test2",
                 Description = "Test2",
                 Age = 10,
@@ -122,8 +131,9 @@ namespace LidkopingsZoo.TEST
             };
             var result = adminServices.AddAnimal(newAnimal);
             Assert.IsTrue(result, "AddAnimal should return true when successfull");
-            Assert.AreEqual(9, dbContext.Animal.Count(), "Animal added");
+            Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
         }
+        //--------------------------------------------------------------------------------------------------
         //WATER
         [TestMethod]
         public async Task OrcaCreationTest()
@@ -131,6 +141,7 @@ namespace LidkopingsZoo.TEST
             var adminServices = new AdminServices(dbContext);
             newAnimal = new Orca("Test", "Test", 10, 0)
             {
+                Id = 7,
                 Name = "Test2",
                 Description = "Test2",
                 Age = 10,
@@ -138,7 +149,7 @@ namespace LidkopingsZoo.TEST
             };
             var result = adminServices.AddAnimal(newAnimal);
             Assert.IsTrue(result, "AddAnimal should return true when successfull");
-            Assert.AreEqual(7, dbContext.Animal.Count(), "Animal added");
+            Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
         }
         [TestMethod]
         public async Task KrakenCreationTest()
@@ -146,6 +157,7 @@ namespace LidkopingsZoo.TEST
             var adminServices = new AdminServices(dbContext);
             newAnimal = new Kraken("Test", "Test", 10, 0)
             {
+                Id = 8,
                 Name = "Test2",
                 Description = "Test2",
                 Age = 10,
@@ -153,304 +165,309 @@ namespace LidkopingsZoo.TEST
             };
             var result = adminServices.AddAnimal(newAnimal);
             Assert.IsTrue(result, "AddAnimal should return true when successfull");
-            Assert.AreEqual(6, dbContext.Animal.Count(), "Animal added");
+            Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
         }
         [TestMethod]
         public async Task PenguinCreationTest()
         {
             var adminServices = new AdminServices(dbContext);
-            newAnimal = new Penguin("Test", "Test", 10, 0)
+            newAnimal = new Penguin("Test3", "Test3", 10, 0)
             {
-                Name = "Test2",
-                Description = "Test2",
+                Id = 9,
+                Name = "Test3",
+                Description = "Test3",
                 Age = 10,
                 DivingDepth = 0
             };
             var result = adminServices.AddAnimal(newAnimal);
             Assert.IsTrue(result, "AddAnimal should return true when successfull");
-            Assert.AreEqual(8, dbContext.Animal.Count(), "Animal added");
+            Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
         }
-        //----------------------------------------------------------------------------------------------
+        //--------------------------------------------------------------------------------------------------
         //EDIT
-        //----------------------------------------------------------------------------------------------
-        //[TestMethod]
-        //public async Task GooseEditTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Goose("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test",
-        //        Description = "Test",
-        //        Age = 10,
-        //        MaxAltitude = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task DragonEditTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Dragon("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test",
-        //        Description = "Test",
-        //        Age = 10,
-        //        MaxAltitude = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(2, dbContext.Animal.Count(), "Animal added");
-        //}
-        ////LAND
-        //[TestMethod]
-        //public async Task GriffinEditTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Griffin("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test",
-        //        Description = "Test",
-        //        Age = 10,
-        //        MaxAltitude = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(3, dbContext.Animal.Count(), "Animal added");
-        //}
-        ////LAND
-        //[TestMethod]
-        //public async Task CowEditTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Cow("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test",
-        //        Description = "Test",
-        //        Age = 10,
-        //        Speed = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(4, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task GiganotosaurusEditTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Giganotosaurus("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        Speed = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(5, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task SantaClausEditTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new SantaClaus("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        Speed = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(6, dbContext.Animal.Count(), "Animal added");
-        //}
-        ////WATER
-        //[TestMethod]
-        //public async Task OrcaEditTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Orca("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        DivingDepth = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(7, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task KrakenEditTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Kraken("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        DivingDepth = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(8, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task PenguinEditTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Penguin("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        DivingDepth = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(9, dbContext.Animal.Count(), "Animal added");
-        //}
-        ////----------------------------------------------------------------------------------------------
-        ////REMOVE
-        ////----------------------------------------------------------------------------------------------
-        //[TestMethod]
-        //public async Task GooseRemoveTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Goose("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test",
-        //        Description = "Test",
-        //        Age = 10,
-        //        MaxAltitude = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(1, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task DragonRemoveCreationTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Dragon("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test",
-        //        Description = "Test",
-        //        Age = 10,
-        //        MaxAltitude = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(2, dbContext.Animal.Count(), "Animal added");
-        //}
-        ////LAND
-        //[TestMethod]
-        //public async Task GriffinRemoveTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Griffin("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test",
-        //        Description = "Test",
-        //        Age = 10,
-        //        MaxAltitude = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(3, dbContext.Animal.Count(), "Animal added");
-        //}
-        ////LAND
-        //[TestMethod]
-        //public async Task CowRemoveTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Cow("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test",
-        //        Description = "Test",
-        //        Age = 10,
-        //        Speed = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(4, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task GiganotosaurusRemoveTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Giganotosaurus("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        Speed = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(5, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task SantaClausRemoveTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new SantaClaus("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        Speed = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(6, dbContext.Animal.Count(), "Animal added");
-        //}
-        ////WATER
-        //[TestMethod]
-        //public async Task OrcaRemoveTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Orca("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        DivingDepth = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(7, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task KrakenRemoveTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Kraken("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        DivingDepth = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(8, dbContext.Animal.Count(), "Animal added");
-        //}
-        //[TestMethod]
-        //public async Task PenguinRemoveTest()
-        //{
-        //    var adminServices = new AdminServices(dbContext);
-        //    newAnimal = new Penguin("Test", "Test", 10, 0)
-        //    {
-        //        Name = "Test2",
-        //        Description = "Test2",
-        //        Age = 10,
-        //        DivingDepth = 0
-        //    };
-        //    var result = adminServices.AddAnimal(newAnimal);
-        //    Assert.IsTrue(result, "AddAnimal should return true when successfull");
-        //    Assert.AreEqual(9, dbContext.Animal.Count(), "Animal added");
-        //}
+        //--------------------------------------------------------------------------------------------------
+        //AIR
+        [TestMethod]
+        public async Task GooseEDITTest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Goose("Test3", "Test1", 10, 0)
+            {
+                Id = 1,
+                Name = "Test3",
+                Description = "Test1",
+                Age = 100,
+                MaxAltitude = 0
+            };
+            var result = adminServices.Edit(newAnimal);
+            Assert.IsTrue(await result);
+        }
+        [TestMethod]
+        public async Task DragonEDITTest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Dragon("Test3", "Test1", 10, 0)
+            {
+                Id = 2,
+                Name = "Test3",
+                Description = "Test1",
+                Age = 100,
+                MaxAltitude = 0
+            };
+            var result = adminServices.Edit(newAnimal);
+            Assert.IsTrue(await result);
+        }
+        [TestMethod]
+        public async Task GriffinEDITTest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Griffin("Test3", "Test1", 10, 0)
+            {
+                Id = 3,
+                Name = "Test3",
+                Description = "Test1",
+                Age = 100,
+                MaxAltitude = 0
+            };
+            var result = adminServices.Edit(newAnimal);
+            Assert.IsTrue(await result);
+        }
+        //--------------------------------------------------------------------------------------------------
+        //LAND
+        [TestMethod]
+        public async Task CowEDITTest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Cow("Test3", "Test1", 10, 0)
+            {
+                Id = 4,
+                Name = "Test3",
+                Description = "Test1",
+                Age = 100,
+                Speed = 0
+            };
+            var result = adminServices.Edit(newAnimal);
+            Assert.IsTrue(await result);
+        }
+        [TestMethod]
+        public async Task GiganotosaurusEDITTest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Giganotosaurus("Test3", "Test1", 10, 0)
+            {
+                Id = 5,
+                Name = "Test3",
+                Description = "Test1",
+                Age = 100,
+                Speed = 0
+            };
+            var result = adminServices.Edit(newAnimal);
+            Assert.IsTrue(await result);
+        }
+        [TestMethod]
+        public async Task SantaClausEDITTest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new SantaClaus("Test3", "Test1", 10, 0)
+            {
+                Id = 6,
+                Name = "Test3",
+                Description = "Test1",
+                Age = 100,
+                Speed = 0
+            };
+            var result = adminServices.Edit(newAnimal);
+            Assert.IsTrue(await result);
+        }
+        //--------------------------------------------------------------------------------------------------
+        //WATER
+        [TestMethod]
+        public async Task OrcaEDITTest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Orca("Test3", "Test1", 10, 0)
+            {
+                Id = 7,
+                Name = "Test3",
+                Description = "Test1",
+                Age = 100,
+                DivingDepth = 0
+            };
+            var result = adminServices.Edit(newAnimal);
+            Assert.IsTrue(await result);
+        }
+        [TestMethod]
+        public async Task KrakenEDITTest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Kraken("Test3", "Test1", 10, 0)
+            {
+                Id = 8,
+                Name = "Test3",
+                Description = "Test1",
+                Age = 100,
+                DivingDepth = 0
+            };
+            var result = adminServices.Edit(newAnimal);
+            Assert.IsTrue(await result);
+        }
+        [TestMethod]
+        public async Task PenguinEDITTest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Penguin("Test3", "Test1", 10, 0)
+            {
+                Id = 9,
+                Name = "Test3",
+                Description = "Test1",
+                Age = 100,
+                DivingDepth = 0
+            };
+            var result = adminServices.Edit(newAnimal);
+            Assert.IsTrue(await result);
+        }
+        //--------------------------------------------------------------------------------------------------
+        //REMOVE
+        //--------------------------------------------------------------------------------------------------
+        //AIR
+        [TestMethod]
+        public async Task GooseREMOVETest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Goose("Test3", "Test3", 10, 0)
+            {
+                Id = 1,
+                Name = "Test3",
+                Description = "Test3",
+                Age = 10,
+                MaxAltitude = 0
+            };
+            var result = adminServices.Delete(newAnimal);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public async Task DragonREMOVETest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Dragon("Test3", "Test3", 10, 0)
+            {
+                Id = 2,
+                Name = "Test3",
+                Description = "Test3",
+                Age = 10,
+                MaxAltitude = 0
+            };
+            var result = adminServices.Delete(newAnimal);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public async Task GriffinREMOVETest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Griffin("Test3", "Test3", 10, 0)
+            {
+                Id = 3,
+                Name = "Test3",
+                Description = "Test3",
+                Age = 10,
+                MaxAltitude = 0
+            };
+            var result = adminServices.Delete(newAnimal);
+            Assert.IsTrue(result);
+        }
+        //--------------------------------------------------------------------------------------------------
+        //LAND
+        [TestMethod]
+        public async Task CowREMOVETest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Cow("Test3", "Test3", 10, 0)
+            {
+                Id = 4,
+                Name = "Test3",
+                Description = "Test3",
+                Age = 10,
+                Speed = 0
+            };
+            var result = adminServices.Delete(newAnimal);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public async Task GiganotosaurusREMOVETest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Giganotosaurus("Test3", "Test3", 10, 0)
+            {
+                Id = 5,
+                Name = "Test3",
+                Description = "Test3",
+                Age = 10,
+                Speed = 0
+            };
+            var result = adminServices.Delete(newAnimal);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public async Task SantaClausREMOVETest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new SantaClaus("Test3", "Test3", 10, 0)
+            {
+                Id = 6,
+                Name = "Test3",
+                Description = "Test3",
+                Age = 10,
+                Speed = 0
+            };
+            var result = adminServices.Delete(newAnimal);
+            Assert.IsTrue(result);
+        }
+        //--------------------------------------------------------------------------------------------------
+        //WATER
+        [TestMethod]
+        public async Task OrcaREMOVETest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Orca("Test3", "Test3", 10, 0)
+            {
+                Id = 7,
+                Name = "Test3",
+                Description = "Test3",
+                Age = 10,
+                DivingDepth = 0
+            };
+            var result = adminServices.Delete(newAnimal);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public async Task KrakenREMOVETest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Kraken("Test3", "Test3", 10, 0)
+            {
+                Id = 8,
+                Name = "Test3",
+                Description = "Test3",
+                Age = 10,
+                DivingDepth = 0
+            };
+            var result = adminServices.Delete(newAnimal);
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public async Task PenguinREMOVETest()
+        {
+            var adminServices = new AdminServices(dbContext);
+            newAnimal = new Penguin("Test3", "Test3", 10, 0)
+            {
+                Id = 9,
+                Name = "Test3",
+                Description = "Test3",
+                Age = 10,
+                DivingDepth = 0
+            };
+            var result = adminServices.Delete(newAnimal);
+            Assert.IsTrue(result);
+        }
     }
 }
